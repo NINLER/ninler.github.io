@@ -1,4 +1,4 @@
-$￥\texttt{ninler.github.io}$$
+$$\large\texttt{ninler.github.io}$$
 
 ---
 
