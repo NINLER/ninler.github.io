@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" href="css/index.css">
     </head>
-    <body>
+    <body id="body">
         <div id="block-up" style="display:none">
             <div id="start"></div>
             <h2 id="hint1">
@@ -16,11 +16,24 @@
         </script>
         <div id="header" style="text-align: center;">
             <div id="head-box" name="element-block">
-                <div class="word-in-box">
+                <div class="word-in-box" style="font-size: 30pt;">
                     ninler.github.io
                 </div>
             </div>
             <script src="js/top-box-color.js"></script>
+        </div>
+        <div class="word-in-box" id="hint3">
+            Click the block above to change the background color.
+        </div>
+        <script src="js/background-changing.js"></script>
+        <div id="boxes" style="text-align: center;transform: translateY(20pt);">
+            <a href="maze-captcha/maze-captcha.html">
+                <div id="maze-captcha" class="boxes" style="background-color:rgb(27, 233, 164)">
+                    <div class="word-in-box">
+                        神奇 Maze 验证码
+                    </div>
+                </div>
+            </a>
         </div>
     </body>
 </html>
