@@ -1,67 +1,64 @@
 html > body {
-    background-color: rgb(233, 233, 233);
+    background-color:rgb(233, 233, 233);
 }
-#block-up {
-    transition:all 0.25s ease;
-    height:1000pt;
-    width:99%;
-    background-color: rgb(0,0,0);
-    display:block;
-    border:1px solid #cccccc;
-    position:fixed;
-    text-align: center;
-    z-index: 100;
+#captcha {
+    padding:100px 0;
+    width:100%;
+    text-align:center;
 }
-#hint1 {
-    color:white;
-    transform: translateY(-490pt);
-}
-#hint2 {
-    color:white;
-    transform: translateY(-490pt);
-}
-#start{
-    opacity:1.00;
-    width:100px;
-    height:100px;
-    background-color: #00ff00;
-    border-radius:30px;
-    display: inline-block;
-    margin-top: 290pt;
-    margin-bottom: 290pt;
-    z-index: 101;
-}
-#head-box {
-    transition: all 0.25s ease;
-    display: inline-block;
+.check-box {
     position:relative;
-    height:200px;
-    width:1000px;
-    background-color: #cccccc;
-    border-radius:30pt;
+    width:320px;
+    height:490px;
+    background:#ffffff;
+    display:inline-block;
+    border:1px solid #cccccc;
+    border-radius:2px;
+    box-shadow:0 2px 10px #0000001a;
+    text-align:left;
+    overflow:hidden;
+    font-size:14px;
 }
-#head-box::before {
-    content: "";
-    display: inline-block;
-    height:100%;
-    width:0;
-    top:0;
-    left:0;
-    vertical-align: middle;
+div {
+    display:block;
 }
-.box-active {
-    transition: all 0.25s ease;
-    opacity:0;
+.head-box {
+    height:75px;
+    width:300px;
+    transform: translateX(7.5pt) translateY(-2pt);
+    border-radius:2px;
+    background-color:#358ce6;
+    box-shadow:0 4px 10px #0000001a;
 }
-.word-in-box {
-    display: inline-block;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size:30pt;
-    color:black;
+.maze {
+    transition:all 0.25s ease;
+    width:300px;
+    height:300px;
+    transform: translateX(7.5pt) translateY(7pt);
+    border-radius:2px;
+    background-color:#cccbcb;
 }
-.word-in-box-dark {
-    display: inline-block;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size:xx-large;
-    color:white;
+.arrow {
+    width:40pt;
+    height:40pt;
+    background-color:rgb(35, 189, 228);
+    text-align: center;
+    transform:translateX(7.5pt) translateY(-5pt);
+    border-radius:5pt;
+    transition:all 0.25s ease;
+}
+.arrow:hover {
+    background-color: rgb(20, 141, 172);
+}
+.restart {
+    background-color: crimson;
+    transition:all 0.25s ease;
+}
+.restart:hover {
+    background-color: rgb(177, 7, 41);
+}
+.mazeblock {
+    width:30px;
+    height:30px;
+    background:rgba(0, 0, 0, 1);
 }
