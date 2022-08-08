@@ -1,4 +1,4 @@
-# ninler.github.io
+# ninler.github.io/puzzle/problem
 
 ---
 
