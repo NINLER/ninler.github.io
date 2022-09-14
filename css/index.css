@@ -1,6 +1,21 @@
 html > body {
-    background-color: rgb(233, 233, 233);
+    background-color: #e9e9e9;
     text-align: center;
+}
+.boxlink {
+    transition: all ease 0.5s;
+    width:40% !important;
+    display: inline-block !important;
+}
+.boxlink:hover {
+    width:55% !important;
+    display: inline-block !important;
+}
+.top {
+    background-color: #000000;
+    color:black;
+    font-family: Consolas;
+    font-size:30pt;
 }
 #block-up {
     transition:all 0.25s ease;
