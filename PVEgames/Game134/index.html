@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="css/bootstrap-icons.min.css"> -->
+    </head>
+    <body style="text-align: center;">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <div id="help">
+        </div>
+        <div class="container w-50" style="text-align: center; transform: translateY(-80pt);">
+            <div class="w-75" style="transform: translateY(100pt); z-index: 999999; display: inline-block;">
+                <div class="alert alert-info" role="alert" onclick="start()">
+                    规则：和机器对战，你先手，每次可以拿 1 或 3 或 4 个方块，谁拿到最后一个谁赢.
+                </div>
+            </div>
+            <div style="transform: translateY(100pt); z-index: 100000; text-align: center;">
+                <div class="input-group mb-3 w-50" style="text-align: center;margin:auto">
+                    <div class="input-group-prepend" style="display: inline-block;">
+                        <button id="decrease" type="button" class="btn btn-warning" style="transform: translateX(-10pt);" onclick="decrease()">Decrease</button>
+                    </div>
+                    <input type="number" class="form-control" style="display: inline-block;" placeholder="Number of blocks" aria-label="Number of blocks" aria-describedby="button-addon2" id="inputNum">
+                    <div class="input-group-append" style="display: inline-block;">
+                        <button id="increase" type="button" class="btn btn-success" style="transform: translateX(10pt);" onclick="increase()">Increase</button>
+                    </div>
+                </div>
+            </div>
+            <div class="w-50" style="transform: translateY(100pt); z-index: 999999; display: inline-block;">
+                <div class="alert alert-info" role="alert" id="Start" onclick="start()">
+                    ====== Start Game ======
+                </div>
+            </div>
+            <br>
+            <script>
+                $('#inputNum').keydown(function(event)
+                {
+                    // console.log(event.keyCode);
+                    if(event.keyCode==13)
+                        change($('#inputNum').val());
+                    return;
+                });
+            </script>
+            <div class="w-25" style="transform: translateY(100pt); z-index: 1000001; display: inline-block;">
+                <div class="alert alert-primary" role="alert" id="blocknum">
+                    Number of Blocks : 
+                </div>
+            </div>
+            <div style="width:100%;transform: translateY(100pt); z-index: 1000002; display: inline-block;">
+                <div class="alert" role="alert" id="ErrorMessage" style="opacity: 1;color:white;font-size:x-large;font-family:Consolas;">
+                    Welcome!
+                </div>
+            </div>
+            <!-- <div style="text-align: center;display: inline-block;"> -->
+                <div id="block" style="text-align: left;transform: translateY(100pt);">
+                </div>
+            <!-- </div> -->
+            <div style="width:33%;transform: translateY(150pt); z-index: 1000002; display: inline-block;">
+                <div class="alert alert-light" role="alert" style="opacity: 1;" id="take1" onclick="take(1)">
+                    Take 1 block
+                </div>
+            </div>
+            <div style="width:33%;transform: translateY(150pt); z-index: 1000002; display: inline-block;">
+                <div class="alert alert-light" role="alert" style="opacity: 1;" id="take3" onclick="take(3)">
+                    Take 3 block
+                </div>
+            </div>
+            <div style="width:33%;transform: translateY(150pt); z-index: 1000002; display: inline-block;">
+                <div class="alert alert-light" role="alert" style="opacity: 1;" id="take4" onclick="take(4)">
+                    Take 4 block
+                </div>
+            </div>
+        </div>
+        <script src="js/game.js"></script>
+        <script src="js/fileio.js"></script>
+    </body>
+</html>
