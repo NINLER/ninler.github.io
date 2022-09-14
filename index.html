@@ -1,50 +1,59 @@
 <!DOCTYPE html>
     <head>
+        <title>ninler.github.io</title>
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
     </head>
-    <body id="body">
-        <div id="block-up" style="display:none">
-            <div id="start"></div>
-            <h2 id="hint1">
-                快速点击这个按钮来访问这个网站
-            </h2>
-            <h2 id="hint2" style="font-family:Consolas;">
-                progress
-            </h2>
+    <body id="body" style="text-align: center;">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <div class="top" id="top" style="text-align: center;">
+            <div style="width:100%;height:300px;transform: translateY(75pt);">
+                ninler.github.io
+            </div>
+            <div style="font-size:15pt;width:100%;transform: translateY(-70pt);">
+                version 1.1
+            </div>
         </div>
-        <script src="js/index-start.js">
-        </script>
-        <div id="header" style="text-align: center;">
-            <div id="head-box" name="element-block">
-                <div class="word-in-box" style="font-size: 30pt;">
-                    ninler.github.io
+        <div style="text-align: right;display: block;width:100%">
+            <div class="card boxlink" style="text-align: right;transform: translateY(50pt);">
+                <div class="card-body" style="text-align: left;background-color:rgb(189, 189, 189);">
+                    <h5 class="card-title">神奇迷宫验证码</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">（疑似人身攻击）</h6>
+                    <hr>
+                    <a href="maze-captcha/maze-captcha.html" class="card-link">
+                        <button type="button" class="btn btn-success">Visit this website</button>
+                    </a>
+                    <!-- <a href="#" class="card-link">Another link</a> -->
                 </div>
             </div>
-            <script src="js/top-box-color.js"></script>
         </div>
-        <div class="word-in-box" id="hint3">
-            Click the block above to change the background color.
-        </div>
-        <script src="js/background-changing.js"></script>
-        <div style="display:block">
-            <div id="boxes" style="text-align: center;transform: translateY(20pt);display: inline-block;">
-                <a href="maze-captcha/maze-captcha.html">
-                    <div id="maze-captcha" class="boxes" style="background-color:rgb(27, 233, 164)">
-                        <div class="word-in-box">
-                            神奇 Maze 验证码
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div id="boxes" style="text-align: center;transform: translateY(20pt) translateX(10pt);display: inline-block;">
-                <a href="puzzle/problem/index.html">
-                    <div id="maze-captcha" class="boxes" style="background-color:rgb(82, 27, 233)">
-                        <div class="word-in-box-dark">
-                            解谜网站 (来 van 啊)
-                        </div>
-                    </div>
-                </a>
+        <div style="text-align: left;display: block;width:100%">
+            <div class="card boxlink" style="text-align: right;transform: translateY(50pt);">
+                <div class="card-body" style="text-align: right;background-color:rgb(189, 189, 189);">
+                    <h5 class="card-title">自己做的解密</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">至今没人通关</h6>
+                    <hr>
+                    <a href="puzzle/problem/index.html" class="card-link">
+                        <button type="button" class="btn btn-success">Visit this website</button>
+                    </a>
+                    <!-- <a href="#" class="card-link">Another link</a> -->
+                </div>
             </div>
         </div>
+        <div style="text-align: right;display: block;width:100%">
+            <div class="card boxlink" style="text-align: right;transform: translateY(50pt);">
+                <div class="card-body" style="text-align: left;background-color:rgb(189, 189, 189);">
+                    <h5 class="card-title">博弈论</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">爆算 SG 函数</h6>
+                    <hr>
+                    <a href="PVEgames/Game134/index.html" class="card-link">
+                        <button type="button" class="btn btn-success">Visit this website</button>
+                    </a>
+                    <!-- <a href="#" class="card-link">Another link</a> -->
+                </div>
+            </div>
+        </div>
+        <script src="js/top-box-color.js"></script>
     </body>
 </html>
