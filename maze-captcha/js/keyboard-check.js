@@ -1,4 +1,4 @@
-document.onclick=function()
+document.onclick=function(event)
 {
     var temp=event.srcElement;
     // console.log(process,temp.type);
@@ -27,10 +27,10 @@ document.onclick=function()
         ShowMaze();
     }
 }
-document.onkeypress=function()
+document.onkeypress=function(event)
 {
     var temp=event.keyCode;
-    console.log(temp);
+    // console.log(temp);
     if(temp==97)
     {
         if(py>0&&maze[px][py-1]!=0)

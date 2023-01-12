@@ -46,7 +46,7 @@ function MakePath(sttx,stty)
         let temp1=stx,temp2=sty;
         stx=stx+dx[dir];
         sty=sty+dy[dir];
-        console.log("makepath:"+stx+" "+sty+" "+dir);
+        // console.log("makepath:"+stx+" "+sty+" "+dir);
         if(stx<0||stx>9||sty<0||sty>9||used[stx][sty]==1)
         {
             i--;
@@ -104,7 +104,7 @@ function Bfs()
             if(maze[i][j]==2)
                 px=i,py=j;
         }
-    console.log(xp.front()+" "+yp.front());
+    // console.log(xp.front()+" "+yp.front());
     used[sx][sy]=1;
     while(xp.size())
     {
@@ -143,6 +143,8 @@ function ShowMaze()
         temp2.style="display:none";
         temp2=document.getElementById("success");
         temp2.style="background-color:rgba(0, 255, 0, 0.226);color:rgb(29, 175, 29);text-align:center;display:inline-block";
+        time2=new Date();
+        calcTime();
     }
     else if(step<=0&&over==false)
     {
