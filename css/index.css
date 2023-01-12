@@ -109,3 +109,42 @@ html > body {
     left:0;
     vertical-align: middle;
 }
+#settings {
+    transition: ease 0.5s all;
+    position:fixed;
+    text-align: right;
+    width: 130pt;
+    border-bottom-right-radius: 11pt;
+    border-top-right-radius: 11pt;
+    height:22pt;
+    transform: translateY(-960pt) translateX(-110pt);
+    background: rgb(32, 32, 32);
+}
+#settings:hover {
+    position:fixed;
+    text-align: right;
+    width: 130pt;
+    border-bottom-right-radius: 11pt;
+    border-top-right-radius: 11pt;
+    height:22pt;
+    transform: translateY(-960pt);
+    background: rgb(32, 32, 32);
+}
+#settings > svg {
+    color: white;
+    font-family: consolas;
+    margin:5pt;
+}
+#settings > a {
+    transition: ease 0.5s all;
+    color: white;
+    font-family: consolas;
+    margin:5pt;
+    text-decoration: none;
+}
+#settings > a:hover {
+    color: rgb(255, 243, 133);
+    font-family: consolas;
+    margin:5pt;
+    text-decoration: none;
+}
