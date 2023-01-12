@@ -1,0 +1,67 @@
+body {
+    background-color: rgb(10 10 28) !important;
+    color:white !important;
+    text-align: left !important;
+    font-family: consolas !important;
+}
+
+.folder {
+    transition: ease 0.25s all;
+    color:rgb(80, 82, 207);
+    text-decoration: none;
+    font-size:12pt;
+}
+
+.folder:hover {
+    font-size:15pt;
+    color:rgb(143, 144, 211);
+    text-decoration: none;
+}
+
+.file {
+    transition: ease 0.25s all;
+    color:rgb(15, 156, 90);
+    text-decoration: none;
+    font-size:12pt;
+}
+
+.file:hover {
+    font-size:15pt;
+    color:rgb(74, 223, 153);
+    text-decoration: none;
+}
+
+.editor {
+    width:90%;
+    border-radius: 10pt;
+    background-color: rgb(37, 37, 37);
+    height: auto;
+}
+
+#code {
+    margin-bottom: 20pt;
+}
+
+.code {
+    padding: 20pt;
+    padding-top:5pt;
+}
+
+.btn-copy {
+    transition: ease all 0.5s;
+    width:100%;
+    height:30pt;
+    border-radius: 10pt;
+    background: darkgreen;
+    border:darkgreen 1pt solid;
+    color:white;
+}
+
+.btn-copy:hover {
+    width:100%;
+    height:30pt;
+    border-radius: 10pt;
+    background: green;
+    border:green 1pt solid;
+    color:white;
+}
