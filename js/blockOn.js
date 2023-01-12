@@ -28,7 +28,8 @@ document.onmouseout=function(event)
     temp.className="btn btn-warning";
     return;
 }
-for(let i=1; i<=3; i++)
+let lengthOfBlock=document.getElementsByName("card");
+for(let i=1; i<=lengthOfBlock.length; i++)
 {
     temp=document.getElementById("into"+i)
     // temp.style.opacity=1;
