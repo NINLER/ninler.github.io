@@ -1,5 +1,7 @@
 document.onclick=function(event)
 {
+    if(time1=='not start')
+        time1=new Date();
     var temp=event.srcElement;
     // console.log(process,temp.type);
     if(temp.id=="button-left")
@@ -29,6 +31,8 @@ document.onclick=function(event)
 }
 document.onkeypress=function(event)
 {
+    if(time1=='not start')
+        time1=new Date();
     var temp=event.keyCode;
     // console.log(temp);
     if(temp==97)

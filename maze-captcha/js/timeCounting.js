@@ -1,4 +1,4 @@
-var time1=new Date();
+var time1='not start';
 var time2;
 function toDouble(str)
 {
