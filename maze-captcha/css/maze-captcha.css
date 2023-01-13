@@ -62,3 +62,36 @@ div {
     height:30px;
     background:rgba(0, 0, 0, 1);
 }
+.leftside {
+    /* background: darkorange; */
+    color:black;
+    width:200pt;
+    text-align: right;
+    height:20pt;
+    position:fixed;
+    transform: translateY(-503pt) translateX(-180pt);
+    border-bottom-right-radius: 10pt;
+    border-top-right-radius: 10pt;
+    transition: ease 0.25s all;
+    display: inline-block;
+}
+.leftside:hover {
+    /* background: darkorange; */
+    color:black;
+    width:200pt;
+    text-align: right;
+    height:20pt;
+    position:fixed;
+    transform: translateY(-503pt) translateX(-30pt);
+    border-bottom-right-radius: 10pt;
+    border-top-right-radius: 10pt;
+    display: inline-block;
+}
+.leftside > svg {
+    margin: 5pt;
+}
+.leftword {
+    transition: ease 0.25s all;
+    transform: translateY(-4pt) translateX(-12pt);
+    display: inline-block;
+}

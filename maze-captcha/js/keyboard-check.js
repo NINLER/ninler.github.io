@@ -1,5 +1,21 @@
 document.onclick=function(event)
 {
+    let tar=event.srcElement;
+    console.log(tar);
+    if(tar.id=='resetButton')
+    {
+        let result=window.prompt("Are you sure you want to reset your all datas?\nIf yes,please input \"I know what I'm doing.\"");
+        if(result=='I know what I\'m doing.')
+        {
+            localStorage.removeItem('best-maze-time');
+            localStorage.removeItem('maze-win-times');
+            localStorage.removeItem('maze-lose-times');
+            window.alert("Data reset successfully.");
+        }
+        else
+            window.alert("Have fun playing.");
+        return;
+    }
     if(time1=='not start')
         time1=new Date();
     var temp=event.srcElement;

@@ -37,7 +37,7 @@ function calcTime()
     }
     console.log(localStorage['best-maze-time']);
     temp=document.getElementById("bestTime");
-    let process=Math.floor(toDouble(localStorage['best-maze-time'])*1000)/1000;
+    let process=Math.round(toDouble(localStorage['best-maze-time'])*1000)/1000;
     temp.innerHTML="最佳用时 : "+process+" s.";
     return;
 }

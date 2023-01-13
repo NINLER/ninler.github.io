@@ -143,6 +143,10 @@ function ShowMaze()
         temp2.style="display:none";
         temp2=document.getElementById("success");
         temp2.style="background-color:rgba(0, 255, 0, 0.226);color:rgb(29, 175, 29);text-align:center;display:inline-block";
+        let tempval=toDouble(localStorage['maze-win-times'])+1;
+        localStorage['maze-win-times']=tempval.toString();
+        tempval=document.getElementById('mazeWin');
+        tempval.innerHTML='你已经赢了 '+localStorage['maze-win-times']+' 局';
         time2=new Date();
         calcTime();
     }
@@ -155,6 +159,10 @@ function ShowMaze()
         temp2.style="display:none";
         temp2=document.getElementById("success");
         temp2.style="background-color:rgba(0, 255, 0, 0.226);color:rgb(29, 175, 29);text-align:center;display:none";
+        let tempval=toDouble(localStorage['maze-lose-times'])+1;
+        localStorage['maze-lose-times']=tempval.toString();
+        tempval=document.getElementById('mazeLose');
+        tempval.innerHTML='你已经输了 '+localStorage['maze-lose-times']+' 局';
         return;
     }
     else if(over==false)
