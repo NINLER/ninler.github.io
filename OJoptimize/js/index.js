@@ -22,6 +22,8 @@ function work()
         document.getElementById("BetterSSLOJStylus").innerText=BetterSSLOJStylusCode;
     if(document.getElementById("BetterSSLOJTempermonkey")!=null)
         document.getElementById("BetterSSLOJTempermonkey").innerText=BetterSSLOJTempermonkeyCode;
+    if(document.getElementById("BetterBing")!=null)
+        document.getElementById("BetterBing").innerText=BetterBingJSCode;
     return;
 }
 document.onclick=function(event)
