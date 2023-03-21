@@ -26,8 +26,8 @@ function initArr()
     href[4]='https://cdnjson.com/images/2023/03/21/4.png';
     href[5]='https://cdnjson.com/images/2023/03/21/5.webp';
     href[6]='https://cdnjson.com/images/2023/03/21/6.png';
-    href[7]='https://cdnjson.com/images/2023/03/21/7.png';
-    href[8]='https://cdnjson.com/images/2023/03/21/8.png';
+    href[7]='https://cdnjson.com/images/2023/03/21/7.jpg';
+    href[8]='https://cdnjson.com/images/2023/03/21/8.jpg';
     href[9]='https://cdnjson.com/images/2023/03/21/9.webp';
     href[10]='https://cdnjson.com/images/2023/03/21/10.png';
     href[11]='https://cdnjson.com/images/2023/03/21/11.webp';
