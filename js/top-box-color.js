@@ -1,34 +1,55 @@
-let lv=127,rv=200;
-let r=lv,g=rv,b=lv;
-let rs=1,gs=1,bs=1;
-function change(time)
+let pos=new Array(110);
+let col=new Array(110);
+let availableNum=20;
+
+function getRand(l,r)
 {
-    r+=(Math.random()*rs*0.1*time);
-    if(r>rv||r<lv)
+    let temp=1;
+    for(let i=1; i<=100; i++)
     {
-        r=Math.min(r,rv);
-        r=Math.max(r,lv);
-        rs=-rs;
+        let mul=(Math.floor(Math.random()*10000)+1);
+        let add=(Math.floor(Math.random()*10000)+1);
+        temp=(temp*mul+add);
+        temp%=(1e10);
+        // console.log(temp,mul);
     }
-    g+=(Math.random()*gs*0.1*time);
-    if(g>rv||g<lv)
-    {
-        g=Math.min(g,rv);
-        g=Math.max(g,lv);
-        gs=-gs;
-    }
-    b+=(Math.random()*bs*0.1*time);
-    if(b>rv||b<lv)
-    {
-        b=Math.min(b,rv);
-        b=Math.max(b,lv);
-        bs=-bs;
-    }
-    let temp=document.getElementById("top");
-    // console.log(temp.style.background);
-    // console.log(r+' '+g+" "+b);
-    // console.log(temp);
-    temp.style.backgroundColor="rgb("+r+","+g+","+b+")";
+    return temp%(r-l+1)+l;
+}
+
+function initArr()
+{
+    for(let i=0; i<pos.length; i++)
+        pos[i]=0,col[i]=0;
+    pos[3]=-100;
+    pos[12]=-140;
+    pos[13]=-50;
+    pos[14]=-60;
+    pos[17]=-90;
+    pos[18]=-70;
+    col[2]='#818181';
+    col[6]=1;
+    col[8]=1;
+    col[11]=1;
+    col[14]='#c5c5c5';
     return;
 }
-window.setInterval("change(10)",10);
+
+function init(id)
+{
+    if(id>availableNum||id<0)
+    {
+        console.log("Error : Image not found.");
+        return;
+    }
+    let temp=document.getElementById('top');
+    temp.style.backgroundPosition="center "+pos[id]+"pt";
+    temp.style.backgroundSize="cover";
+    temp.style.backgroundImage="url(\"image/"+id+".png\")";
+    temp.style.backgroundRepeat="no-repeat";
+    temp.style.color=(col[id]==0? 'white':(col[id]==1? 'black':col[id]));
+    return;
+}
+
+initArr();
+init(0);
+init(getRand(1,availableNum));
