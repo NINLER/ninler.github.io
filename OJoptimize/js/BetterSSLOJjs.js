@@ -1,12 +1,29 @@
 var BetterSSLOJTempermonkeyCode=`// ==UserScript==
 // @name         Better SSLOJ
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2.2
 // @author       You
 // @match        http://noip.ybtoj.com.cn/*
 // @match        http://ssloj.cn/*
 // @grant        none
 // ==/UserScript==
+
+var getButton=(id,text="Copied Times:0")=>
+{
+    let button=document.createElement('button');
+    button.id=id;
+    button.style.borderColor="black !important";
+    button.style.height="20pt";
+    button.style.fontFamily='consolas';
+    button.style.backgroundColor='#000000';
+    button.style.color="#38bfff";
+    button.style.width="auto";
+    button.style.borderRadius="10pt";
+    button.style.textAlign="center";
+    button.style.transition="all ease 0.5s";
+    button.innerText=text;
+    return button;
+}
 
 (function() {
     'use strict';
@@ -16,22 +33,15 @@ var BetterSSLOJTempermonkeyCode=`// ==UserScript==
     var tempTimeout;
     function work()
     {
-        let temp1=document.getElementsByClassName("font-content");
-        let example=temp1[3].firstChild;
-        let children=example.children;
-        let size=example.childElementCount;
-        let added="";
-        // example.innerHTML="";
-        copied=new Array(size/2);
-        for(let i=1; i<=size/2; i++)
+        let temp=document.getElementsByClassName('ui existing segment');
+        copied=new Array(temp.length);
+        for(let i=0; i<temp.length; i++)
         {
-            added+='<p>'+children[i*2-2].innerHTML+'</p>';
-            // Button
-            added+='<button id="copy'+i+'" style="border-color:black !important;height:20pt;font-family:consolas;background-color:#000000 !important;color:#38bfff !important;width:auto !important;border-radius:10pt !important;text-ailgn:center;">Copied Times:0</button>'
-            added+='<div id="text'+i+'"class="ui existing segment">'+children[i*2-1].innerHTML+'</div>';
+            let button=getButton('copy'+i);
+            temp[i].id="text"+i;
+            temp[i].insertAdjacentElement('beforeBegin',button);
             copied[i]=0;
         }
-        example.innerHTML=added;
         return;
     }
     work();
@@ -41,11 +51,13 @@ var BetterSSLOJTempermonkeyCode=`// ==UserScript==
         let tar=event.target;
         let i=tar.id;
         i=i.substr(4);
-        console.log(i);
+        // console.log(i);
         id="copy"+i;
         copied[i]+=1;
         const input=document.createElement('textarea');
         let text=document.getElementById('text'+i).firstChild.firstChild.firstChild.innerText;
+        // console.log(text[text.length-1]);
+        while(text.substring(text.length-1)=='\n'||text.substring(text.length-1)==' '){text=text.substr(0,text.length-1);}
         input.value=text;
         document.body.appendChild(input);
         input.select();
