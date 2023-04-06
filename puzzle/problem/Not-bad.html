@@ -16,8 +16,13 @@
         </div>
         <div class="article">
             <p>恭喜到达第10关!请用下面剪贴板里的内容验证你到达了这里!</p>
+            <p>看不见的可以看 Console</p>
             <p>继续解密吧！</p>
             <a href="https://www.luogu.com.cn/paste/tdajchfh">https://www.luogu.com.cn/paste/tdajchfh</a>
         </div>
+        <script src="../../js/coding.js"></script>
+        <script src="../js/achievements.js"></script>
     </body>
+    <script>console.log(`#include<bits/stdc++.h>
+using namespace std;signed main(){/* Code */double next=0.5;string s;string tar="";cout<<"uid:";cin>>s;s=s+"="+s;for(int i=0; i<s.size(); i++){tar+=char(int(s[i])/100%10);tar+=char(int(s[i])/10%10);tar+=char(int(s[i])/1%10);next=next-(1+4*next+5*next*next+2*next*next*next)/(4+10*next+6*next*next);}if(tar.size()&1)tar+='0';string target="";for(int i=0; i<tar.size(); i+=2)target+=char(tar[i]*10+tar[i+1]+35);cout<<"="<<target<<"="<<endl;return 0;}`)</script>
 </html>
