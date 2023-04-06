@@ -42,7 +42,7 @@ function work()
     randSeed();
     let id=document.getElementById('problem');
     id=id.firstElementChild.innerHTML;
-    id=id.match(/.*([0-9]+).*/);
+    id=id.match(/[^0-9]*([0-9]+)[^0-9]*/);
     // console.log(id);
     if(id!=null)
         id=parseInt(id[1]);
