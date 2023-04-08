@@ -43,7 +43,6 @@ function progressWinLose()
     }
     let perWin=win/(win+lose)*100;
     let perLose=lose/(win+lose)*100;
-    console.log(win,lose,perWin,perLose);
     let temp;
     temp=document.getElementById('progressWin');
     temp.style.width=(perWin*0.7)+'%';
@@ -62,7 +61,6 @@ function progressTimes1to6()
         sum+=parseInt(localData[i]);
         maxx=Math.max(parseInt(localData[i]),maxx);
     }
-    console.log(sum);
     if(sum==0)
     {
         for(let i=1; i<7; i++)
