@@ -1,0 +1,115 @@
+body {
+    background-color:black !important;
+    color:white !important;
+    text-align: center;
+}
+
+.texts {
+    color:white;
+    font-family: consolas;
+    font-size: 45pt;
+    position: fixed;
+    z-index: 3;
+    transform: translateY(-12pt);
+}
+
+.inputblock {
+    transition: all ease 1s;
+    font-size:47pt;
+    font-family:consolas;
+    display:inline-block;
+    width:45pt;
+    height:45pt;
+    text-align:center;
+    border-radius:5pt;
+}
+
+.normal {
+    border:white solid 3pt;
+    background-color: black;
+    color:white !important;
+}
+
+.wrong {
+    border:rgb(71, 71, 71) solid 3pt;
+    background-color: rgb(71, 71, 71);
+    color:white !important;
+}
+
+.silver {
+    border:rgb(255, 166, 0) solid 3pt;
+    background-color: rgb(255, 166, 0);
+    color:white !important;
+}
+
+.golden {
+    border:rgb(51, 255, 0) solid 3pt;
+    background-color: rgb(51, 255, 0);
+    color:black !important;
+}
+
+.danger {
+    border:rgb(204, 0, 0) solid 3pt;
+    background-color: rgb(204, 0, 0);
+    color:white !important;
+}
+
+.unavailable {
+    border:rgb(75, 0, 0) solid 3pt;
+    background-color: rgb(75, 0, 0);
+    color:white !important;
+}
+
+#headblk {
+    background:rgb(66, 66, 66);
+    position:fixed;
+    width:100%;
+    height:40pt;
+    font-family: consolas;
+    z-index:75;
+}
+
+.messshow {
+    transition: all ease 0.5s;
+}
+
+.messhide {
+    opacity:0 !important;
+}
+
+.notice {
+    text-align: center;
+    color:black;
+    z-index:100;
+    transition: all ease 1s;
+    height: 100vh;
+    width: 100vw;
+    position:fixed;
+    display: block;
+    opacity: 1;
+    top:0;
+}
+
+.noticeActive {
+    z-index: 50;
+    transition: all ease 2s;
+    opacity:0 !important;
+    /* display: none !important; */
+}
+
+.button {
+    transition: all ease 0.5s;
+    height:auto;
+    background:#555;
+    color:white;
+    border-radius: 5pt;
+    display:inline-block;
+}
+
+.button > p {
+    margin:3pt 2pt 3pt 2pt;
+}
+
+.button:hover {
+    background: #888;
+}

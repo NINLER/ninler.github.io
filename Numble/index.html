@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ninler.github.io</title>
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
+    <body>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <div id="headblk">
+            <div style="color:darkcyan;font-size: 20pt;transform: translateY(4pt) translateX(20pt);display:inline-block">
+                <p style="color:gold;display:inline-block;width:1pt">N</p>
+                <p style="color:greenyellow;display:inline-block;width:1pt">u</p>
+                <p style="color:gold;display:inline-block;width:1pt">m</p>
+                <p style="color:greenyellow;display:inline-block;width:1pt">d</p>
+                <p style="color:gold;display:inline-block;width:1pt">l</p>
+                <p style="color:greenyellow;display:inline-block;width:1pt">e</p>
+            </div>
+            <div class="button" style="transform: translateX(80pt) translateY(1pt);" onclick="gameHelp()">
+                <p>Game Rules<p>
+            </div>
+            <div class="button" style="transform: translateX(130pt) translateY(1pt);" onclick="gameSettings()">
+                <p>Settings and Results<p>
+            </div>
+            <div id="stopGame" class="button" style="transform: translateX(180pt) translateY(1pt);display:none;" onclick="stopGame()">
+                <p>Stop Game<p>
+            </div>
+            <div id="restartGame" class="button" style="transform: translateX(180pt) translateY(1pt);" onclick="restartGame()">
+                <p>Start Game<p>
+            </div>
+        </div>
+        <div style="height:60pt;opacity: 0;">Hello</div>
+        <div style="font-family: consolas;width:100vw;text-align: center;">请 <b>直接从键盘输入</b> 由 0~9 + - * / = 组成的等式!</div>
+        <div style="height:20pt"></div>
+        <div class="container-xl" style="z-index:75">
+            <div style="text-align:center">
+                <div style="height:2pt;width:2pt"></div>
+                <div class="blocks" name="0"></div>
+                <div style="height:2pt;width:2pt"></div>
+                <div class="blocks" name="0"></div>
+                <div style="height:2pt;width:2pt"></div>
+                <div class="blocks" name="0"></div>
+                <div style="height:2pt;width:2pt"></div>
+                <div class="blocks" name="0"></div>
+                <div style="height:2pt;width:2pt"></div>
+                <div class="blocks" name="0"></div>
+                <div style="height:2pt;width:2pt"></div>
+                <div class="blocks" name="0"></div>
+            </div>
+        </div>
+        <div id="mess" class="toast fade show" style="position: absolute; top: 20pt; right: 20pt;border-radius: 10pt;background-color: #ffffff00;z-index:75">
+        </div>
+        <div id="win" class="notice noticeActive" style="background-color: rgba(0, 255, 0, 0.61);">
+            <div style="opacity:0">OK You Win.</div>
+            <div style="font-size: 50pt;transform: translateY(200pt);font-family: consolas;">
+                You Win!
+            </div>
+        </div>
+        <div id="lose" class="notice noticeActive" style="background-color: rgba(255, 0, 0, 0.61);">
+            <div style="opacity:0">OK You Lose.</div>
+            <div style="font-size: 50pt;transform: translateY(200pt);font-family: consolas;">
+                You Lose!
+            </div>
+        </div>
+        <div id="help" class="notice noticeActive" style="background-color:rgba(0, 0, 0, 0.699);text-align: center;">
+            <!-- <br style="height:30pt"> -->
+            <div class="container" style="background-color: rgb(114, 114, 114);color:white;border-radius: 5pt;height:auto;transform: translateY(50pt);height:80%">
+                <div style="text-align: left;">
+                    <br>
+                    <p style="color:red">请用适合大小的浏览器窗口浏览！否则不保证能看清或看完游戏规则！</p>
+                    <hr>
+                    <h4>游戏规则</h4>
+                    <p>
+                        <b>Numble</b> 是一个猜算式的小游戏，灵感来源于 Wordle。<br>
+                        在游戏中，你可以选择算式的长度，从 <kbd>7</kbd> 到 <kbd>13</kbd> ，任你选择。<br>
+                        一局游戏中，你有 <kbd>6</kbd> 次猜算式的机会。猜不出来就输，猜出来就赢。<br>
+                        每一次机会你要给出一个指定长度的算式，前提是 <b>保证算式成立</b>。<br>
+                        <b style="color:rgb(148, 0, 0)">注意：算式的计算过程中可能有小数，分数，负数出现，但是结果一定是非负整数！</b><br>
+                        当然，也不能让你瞎猜，所以每次猜完之后你会获得一点提示。<br style="width:6pt"><br>
+                        <kbd class="wrong">灰色提示</kbd> 表示你是垃圾，你猜的这个数在算式里根本就没有出现过！<br style="width:6pt"><br>
+                        <kbd class="silver">金色提示</kbd> 表示你还可以，你猜的这个数在算式里出现过，但不在正确的位置上。<br style="width:6pt"><br>
+                        <kbd class="golden">绿色提示</kbd> 表示你非常棒，算式这一位上的数就是这个！<br style="width:3pt"><br>
+                        <h5 style="color:rgba(255, 0, 0, 0.781)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-radioactive" viewBox="0 0 16 16">
+                                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Z"/>
+                                <path d="M9.653 5.496A2.986 2.986 0 0 0 8 5c-.61 0-1.179.183-1.653.496L4.694 2.992A5.972 5.972 0 0 1 8 2c1.222 0 2.358.365 3.306.992L9.653 5.496Zm1.342 2.324a2.986 2.986 0 0 1-.884 2.312 3.01 3.01 0 0 1-.769.552l1.342 2.683c.57-.286 1.09-.66 1.538-1.103a5.986 5.986 0 0 0 1.767-4.624l-2.994.18Zm-5.679 5.548 1.342-2.684A3 3 0 0 1 5.005 7.82l-2.994-.18a6 6 0 0 0 3.306 5.728ZM10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"/>
+                            </svg>
+                            注意!
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-radioactive" viewBox="0 0 16 16">
+                                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Z"/>
+                                <path d="M9.653 5.496A2.986 2.986 0 0 0 8 5c-.61 0-1.179.183-1.653.496L4.694 2.992A5.972 5.972 0 0 1 8 2c1.222 0 2.358.365 3.306.992L9.653 5.496Zm1.342 2.324a2.986 2.986 0 0 1-.884 2.312 3.01 3.01 0 0 1-.769.552l1.342 2.683c.57-.286 1.09-.66 1.538-1.103a5.986 5.986 0 0 0 1.767-4.624l-2.994.18Zm-5.679 5.548 1.342-2.684A3 3 0 0 1 5.005 7.82l-2.994-.18a6 6 0 0 0 3.306 5.728ZM10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"/>
+                            </svg>
+                        </h5>
+                        如果算式中出现了多个同样的数，并且有多种提示同时满足同一个位置，那么满足这个原则：<br>
+                        目标算式中的一个数只能被标记一次。<br>
+                        如这样：<br>
+                        目标的算式是：<kbd style="font-family:consolas">1+2+3=6</kbd><br>
+                        你猜的是这样：<kbd style="font-family:consolas">6-4-1=1</kbd><br><br>
+                        那么提示会是：
+                        <kbd class="silver" style="font-family:consolas">6</kbd>
+                        <kbd class="wrong" style="font-family:consolas">-</kbd>
+                        <kbd class="wrong" style="font-family:consolas">4</kbd>
+                        <kbd class="wrong" style="font-family:consolas">-</kbd>
+                        <kbd class="silver" style="font-family:consolas">1</kbd>
+                        <kbd class="golden" style="font-family:consolas">=</kbd>
+                        <kbd class="wrong" style="font-family:consolas">1</kbd><br><br>
+                        如你所见，目标算式中的 <kbd>1</kbd> 只会被算一次。而后面你猜的算式的最后一个 <kbd>1</kbd> 是错误的。
+                        <hr>
+                        以上就是游戏说明，祝你玩的愉快。
+                    </p>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div id="settings" class="notice noticeActive" style="background-color:rgb(0, 0, 0);text-align: center;">
+            <div class="container" style="background-color: rgb(114, 114, 114);color:white;border-radius: 5pt;height:auto;transform: translateY(50pt);">
+                <div style="text-align: center;font-family: consolas;">
+                    <br style="height: 10pt;">
+                    <h3>Settings</h3>
+                    <hr>
+                    <p>生成算式长度</p>
+                    <kbd id="len7" class="wrong" style="font-family:consolas">7</kbd>
+                    <kbd id="len8" class="wrong" style="font-family:consolas">8</kbd>
+                    <kbd id="len9" class="wrong" style="font-family:consolas">9</kbd>
+                    <kbd id="len10" class="wrong" style="font-family:consolas">10</kbd>
+                    <kbd id="len11" class="wrong" style="font-family:consolas">11</kbd>
+                    <kbd id="len12" class="wrong" style="font-family:consolas">12</kbd>
+                    <br>
+                    <hr>
+                    <h3>Results</h3>
+                    <p>当你按下 Stop Game 这个按键的时候，游戏会判定你失败，并记录到失败次数中。</p>
+                    <hr>
+                    <div style="text-align: left;width: 60%;display:inline-block">
+                        <p style="float: left;">Win:</p>
+                        <div id="progressWin" style="float:left;text-align: center;width:40%;background-color: green;color:white;font-family: consolas;height: auto;">
+                            50%
+                        </div>
+                        <div id="progressLose" style="float:left;text-align: center;width:40%;background-color: darkred;color:white;font-family: consolas;height: auto;">
+                            50%
+                        </div>
+                        <p style="float: left;">:Lose</p>
+                    </div>
+                    <br>
+                    <div style="text-align:left;height:auto;width:60%;display:inline-block">
+                        <p style="float:left;margin:0">1 chance:</p>
+                        <div id="progress1" style="float:left;text-align: center;width:40%;background-color: rgb(5, 219, 219);">5</div><br>
+                        <p style="float:left;margin:0">2 chance:</p>
+                        <div id="progress2" style="float:left;text-align: center;width:40%;background-color: rgb(15, 180, 180);">5</div><br>
+                        <p style="float:left;margin:0">3 chance:</p>
+                        <div id="progress3" style="float:left;text-align: center;width:40%;background-color: rgb(9, 126, 126);">5</div><br>
+                        <p style="float:left;margin:0">4 chance:</p>
+                        <div id="progress4" style="float:left;text-align: center;width:40%;background-color: rgb(7, 97, 97);">5</div><br>
+                        <p style="float:left;margin:0">5 chance:</p>
+                        <div id="progress5" style="float:left;text-align: center;width:40%;background-color: rgb(8, 77, 77);">5</div><br>
+                        <p style="float:left;margin:0">6 chance:</p>
+                        <div id="progress6" style="float:left;text-align: center;width:40%;background-color: rgb(3, 44, 44);">5</div><br>
+                    </div>
+                    <br>
+                    <br style="height: 10pt;">
+                </div>
+            </div>
+        </div>
+        <script src="../js/coding.js"></script>
+        <script src="js/initialize.js"></script>
+        <script src="js/generate.js"></script>
+        <script src="js/process.js"></script>
+        <script src="js/input.js"></script>
+        <script src="js/settingsAndResults.js"></script>
+    </body>
+</html>
