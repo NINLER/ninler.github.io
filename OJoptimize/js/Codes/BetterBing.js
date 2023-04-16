@@ -1,4 +1,4 @@
-var BetterBingJSCode=`// ==UserScript==
+var sourceCode=`// ==UserScript==
 // @name         Better bing
 // @namespace    http://tampermonkey.net/
 // @version      0.1

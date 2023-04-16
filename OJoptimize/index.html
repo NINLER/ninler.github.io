@@ -9,25 +9,24 @@
     <body>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
-        <div id="title">
-            <p style="font-size:xx-small">Github / </p> <!-- Path -->
+        <div>
+            <p style="font-size:xx-small" id="paths">Path</p> <!-- Path -->
             <h2 style="transform: translateY(-7pt);">
-                root <!-- Title -->
-                <a href="..">
-                    <button type="button" class="btn btn-primary" style="display:inline-block;transform: translateX(20pt);">
-                        Back
-                    </button>
-                </a>
+                <p id="title" style="display: inline-block;">Title</p> <!-- Title -->
+                <button id="backbutton" type="button" class="btn btn-primary" style="display:inline-block;transform: translateX(20pt);">
+                    Back
+                </button>
             </h2>
         </div>
         <hr>
-        <div id="introduction">
-            <p style="color:rgb(196, 255, 255)">Root of the files.</p> <!-- Introduction -->
+        <div>
+            <p id="introduction" style="color:rgb(196, 255, 255)">Introduction</p> <!-- Introduction -->
         </div>
         <div id="files">
-            <a style="display: block;" class="folder" href="Stylus/index.html">(Folder) Stylus</a>
-            <a style="display: block;" class="folder" href="Tempermonkey/index.html">(Folder) Tempermonkey</a>
         </div>
+        <div id="code">
+        </div>
+        <script src="js/processHTML.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>
