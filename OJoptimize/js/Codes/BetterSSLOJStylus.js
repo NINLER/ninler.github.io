@@ -538,5 +538,9 @@ color:#eee !important;
 #toggle_all_tags:hover {
 color:#aaa !important;
 }
+
+.font-content > div > .segment {
+background:#535353 !important;
+}
 }
 `
