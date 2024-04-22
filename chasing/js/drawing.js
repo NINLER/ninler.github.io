@@ -5,13 +5,15 @@ var blkdat=Array(200);
 var mapInBin=mapInit();
 var visable=Array(200);
 var blka=50,pl;
-var speed=1.2;
+var speed=2;
 var mv={x:0,y:0};
 let clickDir=[0,0,0,0];
 var monst=new Array();
 var gameStatus='ALIVE';
 var notice='';
 var spawn={x:8,y:8}
+
+let crystalCount;
 
 function init()
 {
@@ -30,41 +32,37 @@ function init()
     return;
 }
 
-function work()
+function drawMap(visableOption=false,ttpos)
 {
-    if(gameStatus=='DIED'||gameStatus=='WIN')
-        return;
-    let crystalCount=0;
-    drawRect("#111111",-1e10,-1e10,2e10,2e10);
-    // console.log(mapInBin);
+    let tpos={...ttpos};
     // Process visable blocks
     for(let i=0; i<visable.length; i++)
         for(let j=0; j<visable[i].length; j++)
-            visable[i][j]=false;
-    let tpos={x:pl.x,y:pl.y},ttpos;
-    tpos.x=Math.floor(pl.x/blka);
-    tpos.y=Math.floor(pl.y/blka);
-    ttpos={x:tpos.x,y:tpos.y};
-    while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.x++;tpos={x:ttpos.x,y:ttpos.y};
-    while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.x--;tpos={x:ttpos.x,y:ttpos.y};
-    while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.y++;tpos={x:ttpos.x,y:ttpos.y};
-    while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.y--;tpos={x:ttpos.x,y:ttpos.y};
-    while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.x++,tpos.y--;tpos={x:ttpos.x,y:ttpos.y};
-    while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.x--,tpos.y--;tpos={x:ttpos.x,y:ttpos.y};
-    while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.y++,tpos.x++;tpos={x:ttpos.x,y:ttpos.y};
-    while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.y++,tpos.x--;tpos={x:ttpos.x,y:ttpos.y};
+            visable[i][j]=!visableOption;
+    if(visableOption)
+    {
+        while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.x++;tpos={x:ttpos.x,y:ttpos.y};
+        while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.x--;tpos={x:ttpos.x,y:ttpos.y};
+        while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.y++;tpos={x:ttpos.x,y:ttpos.y};
+        while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.y--;tpos={x:ttpos.x,y:ttpos.y};
+        while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.x++,tpos.y--;tpos={x:ttpos.x,y:ttpos.y};
+        while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.x--,tpos.y--;tpos={x:ttpos.x,y:ttpos.y};
+        while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.y++,tpos.x++;tpos={x:ttpos.x,y:ttpos.y};
+        while(mapInBin[tpos.x][tpos.y])visable[tpos.x][tpos.y]=true,tpos.y++,tpos.x--;tpos={x:ttpos.x,y:ttpos.y};
+    }
     // Draw blocks
     for(let i=0; i<mapInBin.length; i++)
         for(let j=0; j<mapInBin[i].length; j++)
             if(mapInBin[i][j]&&visable[i][j])
             {
-                let color='#aaaaaa';
+                let color=(visableOption? '#aaaaaa':'#555555');
                 if(gameStatus=='COLLECT OVER'&&i==spawn.x&&j==spawn.y)
                     color='yellow';
                 drawRect(color,i*blka-pl.x+250,j*blka-pl.y+250,blka,blka);
                 if(blkdat[i][j].crystal)
                     drawCircle('#9c27b0',i*blka-pl.x+250+blka/2,j*blka-pl.y+250+blka/2,blka/6),crystalCount++;
             }
+    // Draw Monster
     for(let i=0; i<monst.length; i++)
     {
         let move=monsterMove(monst[i][0],pl,speed,monst[i][1]);
@@ -75,6 +73,7 @@ function work()
         if(dist(monst[i][0].x,monst[i][0].y,pl.x,pl.y)<blka/2+blka/4)
             gameStatus='DIED';
     }
+    // Draw others blocks
     for(let i=0; i<mapInBin.length; i++)
         for(let j=0; j<mapInBin[i].length; j++)
         {
@@ -90,6 +89,20 @@ function work()
                     drawCircle('#9c27b0',i*blka-pl.x+250+blka/2,j*blka-pl.y+250+blka/2,blka/6),crystalCount++;
             }
         }
+    return;
+}
+
+function work(startTime,turn)
+{
+    if(gameStatus=='DIED'||gameStatus=='WIN')
+        return;
+    crystalCount=0;
+    drawRect("#111111",-1e10,-1e10,2e10,2e10);
+    let tpos={x:pl.x,y:pl.y},ttpos;
+    tpos.x=Math.floor(pl.x/blka);
+    tpos.y=Math.floor(pl.y/blka);
+    ttpos={x:tpos.x,y:tpos.y};
+    drawMap(false,ttpos);
     if(gameStatus=='DIED')
     {
         drawWord('YOU DIED!','17pt Consolas','red',30,380)
@@ -112,7 +125,7 @@ function work()
     }
     // Check Crystal
     let newpblk={x:Math.floor(pl.x/blka),y:Math.floor(pl.y/blka)}
-    if(blkdat[newpblk.x][newpblk.y].crystal&&dist(pl.x,pl.y,newpblk.x*blka+25,newpblk.y*blka+25)<blka/6+blka/4)
+    if(blkdat[newpblk.x][newpblk.y].crystal) // check crystal
         blkdat[newpblk.x][newpblk.y].crystal=false;
     if(crystalCount==0)
         notice='Go back to the center!!!',gameStatus='COLLECT OVER';
@@ -131,12 +144,14 @@ function work()
     drawCircle('rgb(3, 169, 244)',250,250,blka/4);
     drawWord(`Crystals Left:${crystalCount}`,'15pt Consolas','#c76e1a','30','10');
     drawWord(notice,'15pt Consolas','#ffb300','60','10');
-    // console.log(pl);
+    // Next Turn
+    window.setTimeout(()=>{work(startTime,turn+1)},Math.min(0,framePerSecond*(turn+1)-(new Date().getTime()-startTime)));
     return;
 }
 
 init();
-setInterval('work()',1);
+work(new Date().getTime(),0);
+// setInterval('work()',1);
 
 document.onkeydown=function(event)
 {

@@ -22,10 +22,10 @@ function mapInit()
 01111111011111110
 00000000000000000`;
     let temp=str.split('\n').splice(1);
-    console.log(temp);
+    // console.log(temp);
     for(let i=0; i<temp.length; i++)
         for(let j=0; j<temp[i].length; j++)
             ret[i][j]=['0','1'].indexOf(temp[i][j]);
-    console.log(ret);
+    // console.log(ret);
     return ret;
 }
