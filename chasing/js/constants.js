@@ -1,4 +1,4 @@
-const framePerSecond=120;
+const framePerSecond=1000/60;
 const hex=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
 const dir8=[[0,-1,-1,-1,0,0,1,1,1],[0,-1,0,1,-1,1,-1,0,1]];
 const dir={
