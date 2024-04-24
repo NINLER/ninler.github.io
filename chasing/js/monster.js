@@ -35,9 +35,9 @@ function bfs(pos={x:0,y:0},tar={x:0,y:0})
     return;
 }
 
-function monsterMove(now,tar,speed,last)
+function monsterMove(now,tar,speed,last,debug=true)
 {
-    // return [now,last];
+    if(debug) { return [now,last]; }
     // console.log(now,tar);
     let nowblk=create(Math.floor(now.x/blka),Math.floor(now.y/blka))
     let res=bfs(nowblk,create(Math.floor(tar.x/blka),Math.floor(tar.y/blka))),nxtpos;

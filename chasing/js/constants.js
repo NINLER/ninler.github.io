@@ -37,7 +37,12 @@ function dist(sx,sy,ex,ey){return Math.sqrt((sx-ex)**2+(sy-ey)**2);}
 function create(x,y){let temp={x:x,y:y};return temp;}
 function copy(x){let temp={x:x.x,y:x.y};return temp;}
 function sgn(x){return (x==0? 0:(x<0? -1:1));}
+function len(x){return dist(0,0,x.x,x.y);}
 function add(x,y){return create(x.x+y.x,x.y+y.y);}
-function mul(x,y){return create(x.x*y,x.y+y.y);}
-function nxt(x){return (x+1)%4;}
-function lst(x){return (x+3)%4;}
+function sub(x,y){return create(x.x-y.x,x.y-y.y);}
+function mul(x,y){return create(x.x*y.x,x.y*y.y);}
+function div(x,y){return create(x.x/y.x,x.y/y.y);}
+function mulnum(x,y){return create(x.x*y,x.y*y);}
+function divnum(x,y){return create(x.x/y,x.y/y);}
+function lst(x,loop=4){return (x+loop-1)%loop;}
+function nxt(x,loop=4){return (x+1)%loop;}

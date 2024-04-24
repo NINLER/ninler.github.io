@@ -134,13 +134,13 @@ function work(startTime,turn,lstTime=new Date().getTime())
     if(mindist<0) mindist=0;
     document.getElementById('canvas').style.border=`rgba(255,0,0,${1-parseFloat(mindist/distlim).toFixed(2)}) solid 8pt`;
     // Test Frame
-    if(true) { notice=(new Date().getTime()-lstTime).toString(); }
+    if(false) { notice=(new Date().getTime()-lstTime).toString(); }
     // End
     drawCircle('rgb(3, 169, 244)',250,250,blka/4);
     drawWord(`Crystals Left:${crystalCount}`,'15pt Consolas','#c76e1a','30','10');
     drawWord(notice,'15pt Consolas','#ffb300','60','10');
     // Next Turn
-    console.log("Next Time",framePerSecond*(turn+1),(new Date().getTime()-startTime),Math.max(0,framePerSecond*(turn+1)-(new Date().getTime()-startTime)));
+    // console.log("Next Time",framePerSecond*(turn+1),(new Date().getTime()-startTime),Math.max(0,framePerSecond*(turn+1)-(new Date().getTime()-startTime)));
     window.setTimeout(()=>{work(startTime,turn+1)},Math.max(0,framePerSecond*(turn+1)-(new Date().getTime()-startTime)));
     return;
 }
@@ -177,16 +177,30 @@ document.onkeyup=function(event)
 
 function playerMove(mv1,ttpos)
 {
-    let respl=copy(pl);
-    let newpl={x:pl.x+mv1.x,y:pl.y};
-    let check=true;
+    let respl=copy(pl),resultX=checkPlayerCanMove(create(mv1.x,0),ttpos),resultY=checkPlayerCanMove(create(0,mv1.y),ttpos);
+    if(resultX[0]) respl.x+=mv1.x; if(resultY[0]) respl.y+=mv1.y;
+    // console.log(Math.abs((ttpos.x+mv.x)*blka+blka/2-newpl.x),Math.abs((ttpos.y+mv.y)*blka+blka/2-newpl.y);
+    if(!((!resultX[0]||!resultY[0])&&(resultX[2][0]!='E'&&resultY[2][0]!='E'))) return respl;
+    let corner={...(resultX[1]??resultY[1])};
+    let forceDir=sub(corner,pl);
+    let partForce=mulnum(forceDir,len(divnum(mul(mv1,forceDir),dist(0,0,forceDir.x,forceDir.y)**2)));
+    let realForce=add(mv1,sub(create(0,0),partForce));
+    // console.log(resultX,resultY,mv1,forceDir,partForce,realForce);
+    respl={...pl}; respl=add(respl,realForce);
+    return respl;
+}
+
+function checkPlayerCanMove(mv1,ttpos)
+{
+    let newpl={x:pl.x+mv1.x,y:pl.y+mv1.y};
+    let check=true,collideBlock=null,collideCode="NULL";
     for(let i=1; i<9&&check; i++)
     {
         let temp=create(ttpos.x+dir8[0][i],ttpos.y+dir8[1][i]);
         if(mapInBin[temp.x][temp.y]) continue;
         blkdat[temp.x][temp.y].corner.forEach((val)=>{
             if(!check) return;
-            if(dist(val.x,val.y,newpl.x,newpl.y)<blka/4) check=false;
+            if(dist(val.x,val.y,newpl.x,newpl.y)<blka/4) check=false,collideBlock={...val},collideCode="CORNER";
             return;
         });
         if(!check) break;
@@ -195,51 +209,8 @@ function playerMove(mv1,ttpos)
             let edge=blkdat[temp.x][temp.y].edge[dir[i]];
             if(i==0||i==2) { if(edge.x[0]<=newpl.x&&newpl.x<=edge.x[1]) if(sgn(newpl.y-edge.y[0])==sgn(dir[dir[i]].y)) if(Math.abs(edge.y[0]-newpl.y)<blka/4) check=false; }
             else { if(edge.y[0]<=newpl.y&&newpl.y<=edge.y[1]) if(sgn(newpl.x-edge.x[0])==sgn(dir[dir[i]].x)) if(Math.abs(edge.x[0]-newpl.x)<blka/4) check=false; }
+            if(!check) { collideBlock={...temp},collideCode="EDGE "+i; break; }
         }
     }
-    if(check) respl.x+=mv1.x;
-    newpl={x:pl.x,y:pl.y+mv1.y}; check=true;
-    for(let i=1; i<9&&check; i++)
-    {
-        let temp=create(ttpos.x+dir8[0][i],ttpos.y+dir8[1][i]);
-        if(mapInBin[temp.x][temp.y])
-            continue;
-        blkdat[temp.x][temp.y].corner.forEach((val)=>{
-            if(!check)
-                return;
-            if(dist(val.x,val.y,newpl.x,newpl.y)<blka/4)
-                check=false;
-            return;
-        });
-        if(!check)
-            break;
-        for(let i=0; i<4; i++)
-        {
-            let edge=blkdat[temp.x][temp.y].edge[dir[i]];
-            if(i==0||i==2)
-            {
-                if(edge.x[0]<=newpl.x&&newpl.x<=edge.x[1])
-                {
-                    // console.log(temp,dir[i],sgn(edge.y[0]-newpl.y),sgn(dir[dir[i]].y))
-                    if(sgn(newpl.y-edge.y[0])==sgn(dir[dir[i]].y))
-                        if(Math.abs(edge.y[0]-newpl.y)<blka/4)
-                            check=false;
-                }
-            }
-            else
-            {
-                if(edge.y[0]<=newpl.y&&newpl.y<=edge.y[1])
-                {
-                    // console.log(temp,dir[i],sgn(edge.x[0]-newpl.x),sgn(dir[dir[i]].x))
-                    if(sgn(newpl.x-edge.x[0])==sgn(dir[dir[i]].x))
-                        if(Math.abs(edge.x[0]-newpl.x)<blka/4)
-                            check=false;
-                }
-            }
-        }
-    }
-    if(check)
-        respl.y+=mv1.y;
-    // console.log(Math.abs((ttpos.x+mv.x)*blka+blka/2-newpl.x),Math.abs((ttpos.y+mv.y)*blka+blka/2-newpl.y))
-    return respl;
+    return [check,collideBlock,collideCode];
 }
