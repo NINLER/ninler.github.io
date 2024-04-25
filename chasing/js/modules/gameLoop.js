@@ -4,8 +4,7 @@ canvas=canvas.getContext('2d');
 var blkdat=Array(200);
 var mapInBin=mapInit();
 var visable=Array(200);
-var blka=50,pl;
-var speed=4;
+var pl;
 var mv={x:0,y:0};
 let clickDir=[0,0,0,0];
 var monst=new Array();
@@ -65,7 +64,7 @@ function drawMap(visableOption=false,ttpos)
     // Draw Monster
     for(let i=0; i<monst.length; i++)
     {
-        let move=monsterMove(monst[i][0],pl,speed,monst[i][1]);
+        let move=monsterMove(monst[i][0],pl,monsterSpeed,monst[i][1]);
         // console.log(move);
         monst[i]=move;
         drawCircle('rgb(255,0,0)',monst[i][0].x-pl.x+250,monst[i][0].y-pl.y+250,blka/2);

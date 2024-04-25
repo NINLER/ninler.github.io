@@ -11,8 +11,7 @@ function monsterPathBfs(pos={x:0,y:0},tar={x:0,y:0})
         // console.log(q);
         q=q.splice(1);
         if(q.length>100) return [];
-        if(now[0].x==tar.x&&now[0].y==tar.y) moveList.push(now[1]);
-        if(moveList.length>=5) return moveList;
+        if(now[0].x==tar.x&&now[0].y==tar.y) return [now[1]];
         for(let i=0; i<4; i++)
         {
             let d=dir[dir[i]];
@@ -40,7 +39,7 @@ function monsterMove(now,tar,speed,last,debug=false)
     //     res=res.concat('TARGET');
     // Choose a path to walk
     if(bfsResult.length==0) return [now,last];
-    const ratio=[93,50,32,16,8];
+    const ratio=bfsResult.map(it=>1);
     const ratioSum=ratio.reduce((lst,item)=>lst+item,0);
     let random=Math.floor(Math.random()*ratioSum);
     // console.log(bfsResult,random);
@@ -65,5 +64,12 @@ function monsterMove(now,tar,speed,last,debug=false)
     if(nxtpos.x!=cent.x) direction.push((nxtpos.x<cent.x? 'LEFT':'RIGHT'))
     if(nxtpos.y!=cent.y) direction.push((nxtpos.y<cent.y? 'UP':'DOWN'))
     if(direction.length==1&&direction[0]==res[turn-1]) nxtpos=cent;
+    // Check collide with other monsters
+    let self=false;
+    for(let i in monst)
+    {
+        if(self) if(dist(monst[i][0].x,monst[i][0].y,nxtpos.x,nxtpos.y)<=1.5*blka) return [now,last];
+        if(monst[i][0].x==now.x&&monst[i][0].y==now.y) self=true;
+    }
     return [nxtpos,res[turn-1]];
 }
