@@ -175,18 +175,21 @@ document.onkeyup=function(event)
     return;
 }
 
-function playerMove(mv1,ttpos)
+function playerMove(mv1,ttpos,debug=false)
 {
     let respl=copy(pl),resultX=checkPlayerCanMove(create(mv1.x,0),ttpos),resultY=checkPlayerCanMove(create(0,mv1.y),ttpos);
     if(resultX[0]) respl.x+=mv1.x; if(resultY[0]) respl.y+=mv1.y;
+    if(debug) console.log("MOVEMENT RESULT",resultX,resultY);
     // console.log(Math.abs((ttpos.x+mv.x)*blka+blka/2-newpl.x),Math.abs((ttpos.y+mv.y)*blka+blka/2-newpl.y);
     if(!((!resultX[0]||!resultY[0])&&(resultX[2][0]!='E'&&resultY[2][0]!='E'))) return respl;
     let corner={...(resultX[1]??resultY[1])};
     let forceDir=sub(corner,pl);
     let partForce=mulnum(forceDir,len(divnum(mul(mv1,forceDir),dist(0,0,forceDir.x,forceDir.y)**2)));
     let realForce=add(mv1,sub(create(0,0),partForce));
-    // console.log(resultX,resultY,mv1,forceDir,partForce,realForce);
-    respl={...pl}; respl=add(respl,realForce);
+    if(debug) console.log(resultX,resultY,mv1,forceDir,partForce,realForce);
+    respl={...pl};
+    if(checkPlayerCanMove(create(realForce.x,0),ttpos)[0]) respl=add(respl,create(realForce.x,0));
+    if(checkPlayerCanMove(create(0,realForce.y),ttpos)[0]) respl=add(respl,create(0,realForce.y));
     return respl;
 }
 
