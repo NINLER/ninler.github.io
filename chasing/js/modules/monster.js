@@ -27,7 +27,7 @@ function monsterPathBfs(pos={x:0,y:0},tar={x:0,y:0})
     return moveList;
 }
 
-function monsterMove(now,tar,speed,last,debug=false)
+function monsterMove(now,tar,speed,last,monsterId,debug=false)
 {
     if(debug) { return [now,last]; }
     // console.log(now,tar);
@@ -65,11 +65,7 @@ function monsterMove(now,tar,speed,last,debug=false)
     if(nxtpos.y!=cent.y) direction.push((nxtpos.y<cent.y? 'UP':'DOWN'))
     if(direction.length==1&&direction[0]==res[turn-1]) nxtpos=cent;
     // Check collide with other monsters
-    let self=false;
-    for(let i in monst)
-    {
-        if(self) if(dist(monst[i][0].x,monst[i][0].y,nxtpos.x,nxtpos.y)<=1.5*blka) return [now,last];
-        if(monst[i][0].x==now.x&&monst[i][0].y==now.y) self=true;
-    }
+    for(let i=monsterId+1; i<monst.length; i++)
+        if(dist(monst[i][0].x,monst[i][0].y,nxtpos.x,nxtpos.y)<=1.25*blka) return [now,last];
     return [nxtpos,res[turn-1]];
 }

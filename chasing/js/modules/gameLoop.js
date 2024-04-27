@@ -1,17 +1,9 @@
 var canvas=document.getElementById('canvas');
 canvas=canvas.getContext('2d');
 
-var blkdat=Array(200);
-var mapInBin=mapInit();
-var visable=Array(200);
-var pl;
-var mv={x:0,y:0};
-let clickDir=[0,0,0,0];
-var monst=new Array();
-var gameStatus='ALIVE';
-var notice='';
-var spawn={x:8,y:8}
-
+var blkdat=Array(200),mapInBin=mapInit(),visable=Array(200);
+var pl,mv={x:0,y:0},clickDir=[0,0,0,0],spawn;
+var monst=new Array(),gameStatus='ALIVE',notice='';
 let crystalCount;
 
 function init()
@@ -22,12 +14,12 @@ function init()
     {
         blkdat[i]=Array(200);
         for(let j=0; j<blkdat[i].length; j++)
-            blkdat[i][j]=new Block(i,j,mapInBin[i][j]);
-            // blkdat[i][j]=new Block(i,j,i==1&&j==1);
+        {
+            blkdat[i][j]=new Block(i,j,(mapInBin[i][j]!=0));
+            if(mapInBin[i][j]==2) monst.push([copy(blkdat[i][j].center),'NONE']);
+            if(mapInBin[i][j]==3) pl=copy(blkdat[i][j].center),spawn=create(i,j);
+        }
     }
-    monst.push([copy(blkdat[1][1].center),'NONE']);
-    monst.push([copy(blkdat[15][15].center),'NONE']);
-    pl=copy(blkdat[spawn.x][spawn.y].center);
     return;
 }
 
@@ -64,7 +56,7 @@ function drawMap(visableOption=false,ttpos)
     // Draw Monster
     for(let i=0; i<monst.length; i++)
     {
-        let move=monsterMove(monst[i][0],pl,monsterSpeed,monst[i][1]);
+        let move=monsterMove(monst[i][0],pl,monsterSpeed,monst[i][1],i);
         // console.log(move);
         monst[i]=move;
         drawCircle('rgb(255,0,0)',monst[i][0].x-pl.x+250,monst[i][0].y-pl.y+250,blka/2);
@@ -143,10 +135,6 @@ function work(startTime,turn,lstTime=new Date().getTime())
     window.setTimeout(()=>{work(startTime,turn+1)},Math.max(0,framePerSecond*(turn+1)-(new Date().getTime()-startTime)));
     return;
 }
-
-init();
-work(new Date().getTime(),0);
-// setInterval('work()',1);
 
 document.onkeydown=function(event)
 {

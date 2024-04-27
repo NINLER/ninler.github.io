@@ -6,11 +6,20 @@ const JsResourcesList=[
     "./js/modules/gameLoop.js",
 ];
 
-const addElement=(id=0)=>{
-    if(id>=JsResourcesList.length) return;
-    const element=document.createElement('script');
-    element.onload=()=>{addElement(id+1)};
-    element.src=JsResourcesList[id]; document.body.appendChild(element);
+var loadedResourceCountdown=JsResourcesList.length;
+
+const addElement=()=>{
+    for(let it of JsResourcesList)
+    {
+        const temp=document.createElement('script');
+        temp.src=it;
+        temp.onload=()=>{
+            loadedResourceCountdown--;
+            if(!loadedResourceCountdown) { init(); work(new Date().getTime(),0); }
+        }
+        document.body.appendChild(temp);
+    }
+    return;
 };
 
 addElement();
