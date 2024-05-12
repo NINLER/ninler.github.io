@@ -1,0 +1,21 @@
+header {
+    background-image: url("../img/bkdk3u1f.png");
+}
+
+/* Background shortcuts */
+
+.bg-empty {
+    background: rgba(0, 0, 0, 0);
+}
+
+.bg-img {
+    background-position: center 0pt;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Fonts shortcuts */
+
+.consolas {
+    font-family: Consolas;
+}
