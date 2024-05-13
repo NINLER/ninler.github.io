@@ -21,7 +21,7 @@ $.loadWebsites=()=>{
         {name:"网站资源",info:"让你的网站更美观便利",image:"./assets/img/6.png"},
         {name:"Numble",info:"Wordle 的变种",image:"./assets/img/9.png"},
     ];
-    const template=(name,info,img,wid=6)=>{
+    const template=(name,info,img,wid)=>{
         return `
             <div class="col-lg-${wid}">
                 <div class="card bg-dark overlay overlay-black text-white shadow-sm border-0">
@@ -40,9 +40,9 @@ $.loadWebsites=()=>{
     for(let i=0; i<data.length; i+=2)
     {
         let temp=``;
-        if(!data[i+1]) temp=template(data[i].name,data[i].info,data[i].image,12);
-        else temp=template(data[i].name,data[i].info,data[i].image)+template(data[i+1].name,data[i+1].info,data[i+1].image);
-        temp='<section data-aos="fade-out" ptop=20><div class="row">'+temp+'</div></section>';
+        if(!data[i+1]) temp=template(data[i].name,data[i].info,data[i].image,6);
+        else temp=template(data[i].name,data[i].info,data[i].image,6)+template(data[i+1].name,data[i+1].info,data[i+1].image,6);
+        temp='<section data-aos="fade-in" ptop=20 class="align-items-center" data-aos-offset=100><div class="row">'+temp+'</div></section>';
         origin.innerHTML+=temp;
     }
     return;
