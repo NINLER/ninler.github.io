@@ -17,18 +17,30 @@
                 <div class="container-fluid text-white" h=290 mtop=30>
                     <div class="d-lg-flex align-items-center justify-content-between text-center pl-lg-5">
                         <div class="col pt-4 pb-4">
-                            <h1 class="display-4 consolas">ninler.github.io</h1>
-                            <h5 class="font-weight-light mb-4">version 2.0</h5>
+                            <section data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1000" data-aos-once="true">
+                                <h1 class="display-4 consolas">ninler.github.io</h1>
+                                <h5 class="font-weight-light mb-4">version 2.0</h5>
+                            </section>
                         </div>
                     </div>
                 </div>
             </div>
-            <svg style="margin-top: -1px;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 1440 126" style="enable-background:new 0 0 1440 126;" xml:space="preserve">
+            <svg mtop=-1 version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 1440 126" style="enable-background:new 0 0 1440 126;" xml:space="preserve">
                 <path class="bg-white" d="M685.6,38.8C418.7-11.1,170.2,9.9,0,30v96h1440V30C1252.7,52.2,1010,99.4,685.6,38.8z"/>
             </svg>
         </header>
-        <section class="pt-4 pb-5" data-aos="fade-up">
-        </section>
+        <div class="container w-75">
+            <section class="pt-4 pb-5" data-aos="fade-out" id="websites">
+                <h3 class="h5 mb-4 font-weight-bold">Websites</h3>
+                <!-- Websites -->
+            </section>
+        </div>
+        <footer class="bg-black pb-5">
+            <div class="container text-center align-items-center text-white">
+                <div ptop=20>Copyright © <script>document.write(new Date().getFullYear())</script> ninler，All rights reserved.</div>
+                <div ptop=5>View it on <a href="https://github.com/ninler/ninler.github.io" class="a-self">Github</a> .</div>
+            </div>
+        </footer>
         <!--------------------------------------
         JAVASCRIPTS
         --------------------------------------->
@@ -50,44 +62,23 @@
                 }
             </style>
         </noscript>
-        <script>
-            AOS.init({
-                duration: 700
-            });
-        </script>
+        <script>AOS.init({duration: 700});</script>
         <!-- Disable animation on less than 1200px, change value if you like -->
-        <script>
-            AOS.init({
-                disable: function () {
-                    var maxWidth = 1200;
-                    return window.innerWidth < maxWidth;
-                }
-            });
-        </script>
+        <script>AOS.init({disable:function(){var maxWidth=1200; return window.innerWidth < maxWidth;}});</script>
         <!-- Carousel Height Smooth -->
         <script>
             $('.carousel').on('slide.bs.carousel', function (event) {
-                var height = $(event.relatedTarget).height();
-                var $innerCarousel = $(event.target).find('.carousel-inner');
-                $innerCarousel.animate({
-                    height: height
-                });
+                var height=$(event.relatedTarget).height();
+                var $innerCarousel=$(event.target).find('.carousel-inner');
+                $innerCarousel.animate({height:height});
             });
         </script>
         <!-- Popovers -->
         <script>
-            $(function () {
-                $('[data-toggle="popover"]').popover()
-            })
-            $('.popover-dismiss').popover({
-                trigger: 'focus'
-            })
+            $(function(){$('[data-toggle="popover"]').popover()});
+            $('.popover-dismiss').popover({trigger: 'focus'});
         </script>
         <!-- Tooltips -->
-        <script>
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        </script>
+        <script>$(function(){$('[data-toggle="tooltip"]').tooltip()})</script>
     </body>
 </html>
