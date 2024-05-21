@@ -8,7 +8,11 @@ $.render=()=>{
     {
         let temp=document.querySelectorAll(`*[${i}]`);
         for(let it=0; it<temp.length; it++)
-            temp[it].style[shortcuts[i]]=temp[it].getAttribute(i)+'px';
+        {
+            let attributeValue=temp[it].getAttribute(i);
+            attributeValue=attributeValue+(!isNaN(parseInt(attributeValue[attributeValue.length-1]))? "px":"");
+            temp[it].style.setProperty(shortcuts[i],attributeValue,'important');
+        }
     }
     return;
 };
@@ -30,7 +34,7 @@ $.loadWebsites=()=>{
                         <div class="card-body">
                             <h3 class="card-title">${name}</h3>
                             <p class="card-text">${info}</p>
-                            <a href="#" class="btn btn-info btn-round">Visit website</a>
+                            <a href="${address}" class="btn btn-info btn-round">Visit website</a>
                         </div>
                     </div>
                 </div>

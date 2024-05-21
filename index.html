@@ -12,24 +12,24 @@
         <link href="./assets/css/vendor/aos.css" rel="stylesheet"/>
     </head>
     <body>
-        <header class="bg-img">
-            <div class="jumbotron jumbotron-lg jumbotron-fluid mb-0 pb-3 bg-empty position-relative">
-                <div class="container-fluid text-white" h=290 mtop=30>
-                    <div class="d-lg-flex align-items-center justify-content-between text-center pl-lg-5">
-                        <div class="col pt-4 pb-4">
-                            <section data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1000" data-aos-once="true">
-                                <h1 class="display-4 consolas">ninler.github.io</h1>
-                                <h5 class="font-weight-light mb-4">version 2.0</h5>
-                            </section>
-                        </div>
-                    </div>
-                </div>
+        <header class="bg-img" style="position: relative;">
+            <div class="header-text">
+                <section data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1000" data-aos-once="true">
+                    <h1 class="display-4 consolas">ninler.github.io</h1>
+                    <h5 class="font-weight-light mb-4">version 2.0</h5>
+                </section>
             </div>
-            <svg mtop=-1 version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 1440 126" style="enable-background:new 0 0 1440 126;" xml:space="preserve">
-                <path class="bg-white" d="M685.6,38.8C418.7-11.1,170.2,9.9,0,30v96h1440V30C1252.7,52.2,1010,99.4,685.6,38.8z"/>
-            </svg>
+            <div id="scroll-down">
+                <section data-aos="fade-down" data-aos-easing="ease-out-sine" data-aos-offset="-10" data-aos-duration="750" data-aos-delay="1500">
+                    <p pbottom=10 mbottom=0 class="consolas">Scroll to display more</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </section>
+            </div>
         </header>
-        <div class="container w-75">
+        <div class="container w-75" mtop=20>
             <section class="pt-4 pb-5" data-aos="fade-out">
                 <h3 class="h5 mb-4 font-weight-bold">About me</h3>
                 <div>Hello visitor! I'm <kbd>NINLER</kbd> from China!<br>You can also find me in <a href="https://luogu.com/user/144853" class="a-self">Luogu</a>!</div>
@@ -41,7 +41,7 @@
         </div>
         <footer class="bg-black pb-5">
             <div class="container text-center align-items-center text-white">
-                <div ptop=20>Copyright © <script>document.write(new Date().getFullYear())</script> ninler，All rights reserved.</div>
+                <div ptop=20>Copyright © <script>document.write(new Date().getFullYear())</script> ninler, All rights reserved.</div>
                 <div ptop=5>View it on <a href="https://github.com/ninler/ninler.github.io" class="a-self">Github</a> .</div>
             </div>
         </footer>
