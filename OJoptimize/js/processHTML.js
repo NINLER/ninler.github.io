@@ -10,7 +10,7 @@ function clearWebsite()
     return;
 }
 
-function processHTML(now=new Node())
+async function processHTML(now=new Node())
 {
     clearWebsite();
     if(now.fat!=-1)
@@ -71,13 +71,14 @@ function processHTML(now=new Node())
         </div>`
         let scr=document.createElement('script'),CODE;
         scr.src='js/Codes/'+source.get(now.name);
-        document.getElementById('code').insertAdjacentElement('afterend',scr);
-        // console.log(scr.previousSibling);
-        window.setTimeout(`
+        new Promise((res,rej)=>{
+            document.getElementById('code').insertAdjacentElement('afterend',scr);
+            res();
+        }).then(()=>{
             document.getElementById('sourceCode').innerText=sourceCode;
             CODE=document.getElementById('code');
             document.body.removeChild(CODE.nextElementSibling);
-        `,250);
+        });
     }
     return;
 }

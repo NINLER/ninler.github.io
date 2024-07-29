@@ -22,13 +22,15 @@ function gameWin()
 {
     if(gamedoing)
         return;
-    document.getElementById('win').className='notice';
-    localData[6]=(parseInt(localData[6])+1).toString();
-    console.log(line);
-    localData[line]=(parseInt(localData[line])+1).toString();
-    writeData(localData);
-    progressWinLose();
-    progressTimes1to6();
+    window.setTimeout(()=>{
+        document.getElementById('win').className='notice';
+        localData[6]=(parseInt(localData[6])+1).toString();
+        console.log(line);
+        localData[line]=(parseInt(localData[line])+1).toString();
+        writeData(localData);
+        progressWinLose();
+        progressTimes1to6();
+    },750);
     return;
 }
 
@@ -36,11 +38,13 @@ function gameLose()
 {
     if(gamedoing)
         return;
-    document.getElementById('lose').className='notice';
-    localData[7]=(parseInt(localData[7])+1).toString();
-    writeData(localData);
-    progressWinLose();
-    progressTimes1to6();
+    window.setTimeout(()=>{
+        document.getElementById('lose').className='notice';
+        localData[7]=(parseInt(localData[7])+1).toString();
+        writeData(localData);
+        progressWinLose();
+        progressTimes1to6();
+    },750);
     return;
 }
 
