@@ -71,8 +71,9 @@ async function processHTML(now=new Node())
         </div>`
         let scr=document.createElement('script'),CODE;
         scr.src='js/Codes/'+source.get(now.name);
-        new Promise((res,rej)=>{
-            document.getElementById('code').insertAdjacentElement('afterend',scr);
+        new Promise(async (res,rej)=>{
+            const run=async ()=>{document.getElementById('code').insertAdjacentElement('afterend',scr);};
+            await run();
             res();
         }).then(()=>{
             document.getElementById('sourceCode').innerText=sourceCode;
