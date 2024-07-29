@@ -72,7 +72,7 @@ async function processHTML(now=new Node())
         let scr=document.createElement('script'),CODE;
         scr.src='js/Codes/'+source.get(now.name);
         scr.onload=()=>{
-            document.getElementById('sourceCode').innerText=sourceCode;
+            document.getElementById('sourceCode').innerText=sourceCode.replaceAll(' ','\u00A0');
             CODE=document.getElementById('code');
             document.body.removeChild(CODE.nextElementSibling);
         };
