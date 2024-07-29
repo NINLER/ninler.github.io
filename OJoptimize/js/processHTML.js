@@ -71,15 +71,12 @@ async function processHTML(now=new Node())
         </div>`
         let scr=document.createElement('script'),CODE;
         scr.src='js/Codes/'+source.get(now.name);
-        new Promise(async (res,rej)=>{
-            const run=async ()=>{document.getElementById('code').insertAdjacentElement('afterend',scr);};
-            await run();
-            res();
-        }).then(()=>{
+        scr.onload=()=>{
             document.getElementById('sourceCode').innerText=sourceCode;
             CODE=document.getElementById('code');
             document.body.removeChild(CODE.nextElementSibling);
-        });
+        };
+        document.getElementById('code').insertAdjacentElement('afterend',scr);
     }
     return;
 }
