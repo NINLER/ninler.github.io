@@ -1,4 +1,4 @@
-@-moz-document regexp("http://ssloj.cn/.*"), regexp("http://.*ybtoj.com.cn/.*") {
+var sourceCode=`@-moz-document regexp("http://ssloj.cn/.*"), regexp("http://.*ybtoj.com.cn/.*") {
 /* Main Part */
 /*
     This part is the main part of the code.
@@ -637,4 +637,4 @@ color:#aaa !important;
 
 /* #0f3d34 */
 /* #1ba61f */
-}
+}`
