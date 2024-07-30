@@ -12,21 +12,20 @@ function initialize()
 {
     // Nodes
     graph.push(new Node(0,0,'root','Root of the files.'));
-    graph.push(new Node(1,0,'Stylus','Stylus (and some JS) files.'));
+    graph.push(new Node(1,0,'Stylus','Stylus files.'));
     graph.push(new Node(2,0,'Tempermonkey','Tempermonkey files.'));
     graph.push(new Node(3,1,'Better Smart Luogu','Better Smart Luogu (Stylus Code) .'));
-    graph.push(new Node(4,0,'Better SSLOJ','Better SSLOJ.'));
+    graph.push(new Node(4,0,'Better SSLOJ','Better SSLOJ.')); //  --- deprecated ---
     graph.push(new Node(5,1,'Better Bing','Better Bing.'));
     graph.push(new Node(6,1,'Better SSLOJ (Tempermonkey)','Better SSLOJ (Tempermonkey Code) .'));
     graph.push(new Node(7,1,'Better SSLOJ (Stylus)','Better SSLOJ (Stylus Code) .'));
     // Edges
     Node.addChild(graph[0],graph[1]);
     Node.addChild(graph[0],graph[2]);
-    Node.addChild(graph[1],graph[4]);
     Node.addChild(graph[1],graph[3]);
-    Node.addChild(graph[4],graph[6]);
-    Node.addChild(graph[4],graph[7]);
+    Node.addChild(graph[1],graph[7]);
     Node.addChild(graph[2],graph[5]);
+    Node.addChild(graph[2],graph[6]);
     // Sources
     source.set('Better Smart Luogu','BetterSmartLuogu.js');
     source.set('Better Bing','BetterBing.js');
