@@ -1,70 +1,121 @@
 var sourceCode=`// ==UserScript==
 // @name         Better SSLOJ
 // @namespace    http://tampermonkey.net/
-// @version      1.2.2
+// @version      0.1
+// @description  try to take over the world!
 // @author       You
-// @match        http://noip.ybtoj.com.cn/*
 // @match        http://ssloj.cn/*
+// @icon         https://www.google.com/s2/favicons?domain=ssloj.cn
 // @grant        none
 // ==/UserScript==
 
-var getButton=(id,text="Copied Times:0")=>
+var testcase,size,transfer;
+
+function uuidv4()
 {
-    let button=document.createElement('button');
-    button.id=id;
-    button.style.borderColor="black !important";
-    button.style.height="20pt";
-    button.style.fontFamily='consolas';
-    button.style.backgroundColor='#000000';
-    button.style.color="#38bfff";
-    button.style.width="auto";
-    button.style.borderRadius="10pt";
-    button.style.textAlign="center";
-    button.style.transition="all ease 0.5s";
-    button.innerText=text;
-    return button;
+    const s4=()=>{return (((1+Math.random())*0x10000)|0).toString(16).substring(1);};
+    return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+}
+
+function copyContent(content)
+{
+    let input=document.createElement('textarea'); input.value=content;
+    document.body.appendChild(input);
+    input.select(); document.execCommand('copy');
+    document.body.removeChild(input);
+    return;
+}
+
+function sendProblemInfo()
+{
+    let info={};
+    info.name=document.getElementsByTagName("h1").item(0).innerHTML;
+    while("\n\t\r ".indexOf(info.name.at(0))!=-1) info.name=info.name.slice(1);
+    while("\n\t\r ".indexOf(info.name.at(-1))!=-1) info.name=info.name.slice(0,info.name.length-1);
+    info.group="SSLOJ";
+    info.url=window.location.href;
+    info.interactive=false;
+    info.memoryLimit=parseInt(document.body.innerHTML.match(/内存限制：([0-9]*) MiB/gm).at(0).match(/内存限制：([0-9]*) MiB/).at(1));
+    info.timeLimit=parseInt(document.body.innerHTML.match(/时间限制：([0-9]*) ms/gm).at(0).match(/时间限制：([0-9]*) ms/).at(1))*2;
+    info.testType="single";
+    info.input={"type":"stdin"};
+    info.output={"type":"stdout"};
+    info.language={"java":{"mainClass":"Main","taskClass":`Problem${info.name}`}};
+    info.batch={"id":uuidv4(),"size":1};
+    info.tests=new Array();
+    for(let i=0; i<size; i+=2)
+    {
+        let input=document.getElementById('test'+i);
+        let output=document.getElementById('test'+(i+1));
+        input=input.firstChild.firstChild.firstChild.innerText;
+        output=output.firstChild.firstChild.firstChild.innerText;
+        while("\n\t\r ".indexOf(input.at(-1))!=-1) input=input.slice(0,input.length-1);
+        while("\n\t\r ".indexOf(output.at(-1))!=-1) output=output.slice(0,output.length-1);
+        info.tests.push({input:input,output:output});
+    }
+    console.log("SEND INFO",info);
+    let temp=new XMLHttpRequest();
+    temp.open("POST","http://localhost:27121");
+    temp.onreadystatechange=()=>{console.log(temp);};
+    temp.send(JSON.stringify(info));
+    return;
+}
+
+function processTransfer(fail=false)
+{
+    const hint=["Transfer to CPH","CPH unavailable"][new Number(fail)];
+    const html=`<div class="${["transferToCPH","CPHunavailable"][new Number(fail)]}" id="transferCPH"><p id="transferInfo">${hint}</p></div>`;
+    document.body.innerHTML=document.body.innerHTML.replace("样例","样例"+html);
+    transfer=document.getElementById('transferCPH');
+    return;
+}
+
+function checkCphOpen()
+{
+    let check=new XMLHttpRequest();
+    check.open("POST","http://localhost:27121");
+    check.timeout=100;
+    check.addEventListener("error",(event)=>{console.log("CHECK : ERROR"); processTransfer(); });
+    check.addEventListener("success",(event)=>{console.log("CHECK : SUCCESS"); processTransfer(); });
+    check.addEventListener("timeout",(event)=>{console.log("CHECK : TIMEOUT"); processTransfer(true); });
+    check.send();
+    return;
+}
+
+function addExtraContent()
+{
+    document.body.innerHTML=document.body.innerHTML.replace(
+        `<h4 class="ui top attached block header">样例</h4>`,
+        `<h4 class="ui top attached block header" id="Example">样例</h4>`
+    );
+    testcase=document.getElementById('Example').nextElementSibling;
+    let res=testcase.innerHTML.match(/<div class="ui existing segment"><pre style="margin-top: 0; margin-bottom: 0; "><code><span class="hl-text hl-plain">(?:[^<]*)<\/span><\/code><\/pre>/gm);
+    res.map((it,idx)=>{testcase.innerHTML=testcase.innerHTML.replace(it,it.replace('segment"',`segment copyTextDown" id="test${idx}"`))});
+    size=res.length;
+    for(let i=0; i<size; i++)
+    {
+        let temp=document.getElementById('test'+i);
+        let add=document.createElement('div');
+        add.className="copyTextUp"; add.innerHTML=`<p style="display:inline-block"><strong>Source Code</strong></p><div class="copyInfo"></div>`;
+        temp.insertAdjacentElement('beforebegin',add);
+    }
+    document.addEventListener('click',(event)=>{
+        let item=event.target; console.log(item);
+        if(item.className=="copyInfo")
+        {
+            let copyText=item.parentNode.nextElementSibling;
+            copyText=copyText.firstChild.firstChild.firstChild.innerText;
+            while("\n\t\r ".indexOf(copyText.at(-1))!=-1) copyText=copyText.slice(0,copyText.length-1);
+            copyContent(copyText);
+        }
+        else if(["transfer","transferInfo"].indexOf(item.id)!=-1&&item.innerText=="Transfer to CPH") sendProblemInfo();
+        return;
+    });
+    return;
 }
 
 (function() {
     'use strict';
-    // Your code here...
-    var id;
-    var copied;
-    var tempTimeout;
-    function work()
-    {
-        let temp=document.getElementsByClassName('ui existing segment');
-        copied=new Array(temp.length);
-        for(let i=0; i<temp.length; i++)
-        {
-            let button=getButton('copy'+i);
-            temp[i].id="text"+i;
-            temp[i].insertAdjacentElement('beforeBegin',button);
-            copied[i]=0;
-        }
-        return;
-    }
-    work();
-    document.onclick=function()
-    {
-        // console.log("try to copy para."+i);
-        let tar=event.target;
-        let i=tar.id;
-        i=i.substr(4);
-        // console.log(i);
-        id="copy"+i;
-        copied[i]+=1;
-        const input=document.createElement('textarea');
-        let text=document.getElementById('text'+i).firstChild.firstChild.firstChild.innerText;
-        // console.log(text[text.length-1]);
-        while(text.substring(text.length-1)=='\n'||text.substring(text.length-1)==' '){text=text.substr(0,text.length-1);}
-        input.value=text;
-        document.body.appendChild(input);
-        input.select();
-        document.execCommand('copy');
-        document.body.removeChild(input);
-        document.getElementById(id).innerText="Copied Times:"+copied[i];
-        // console.log("Copy Successfully.");
-        return;
-    }
+    addExtraContent();
+    checkCphOpen();
 })();`;
