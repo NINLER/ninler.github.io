@@ -72,7 +72,7 @@ document.onclick=function(event)
         stTime=new Date();
         let getText=document.getElementById('sourceCode').innerText;
         let input=document.createElement('textarea');
-        input.value=getText;
+        input.value=getText.replaceAll('\u00A0',' ');
         document.body.appendChild(input);
         input.select();
         if(document.execCommand('copy'))
