@@ -1,7 +1,7 @@
 var sourceCode=`// ==UserScript==
 // @name         Better SSLOJ
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.01
 // @author       NINLER
 // @match        http://ssloj.cn/*
 // @grant        none
@@ -45,8 +45,8 @@ function sendProblemInfo()
 {
     let info={};
     info.name=document.getElementsByTagName("h1").item(0).innerHTML;
-    while("\\n\t\\r ".indexOf(info.name.at(0))!=-1) info.name=info.name.slice(1);
-    while("\\n\t\\r ".indexOf(info.name.at(-1))!=-1) info.name=info.name.slice(0,info.name.length-1);
+    while("\\n\\t\\r ".indexOf(info.name.at(0))!=-1) info.name=info.name.slice(1);
+    while("\\n\\t\\r ".indexOf(info.name.at(-1))!=-1) info.name=info.name.slice(0,info.name.length-1);
     info.group="SSLOJ";
     info.url=window.location.href;
     info.interactive=false;
@@ -64,8 +64,8 @@ function sendProblemInfo()
         let output=document.getElementById('test'+(i+1));
         input=input.firstChild.firstChild.firstChild.innerText;
         output=output.firstChild.firstChild.firstChild.innerText;
-        while("\\n\t\\r ".indexOf(input.at(-1))!=-1) input=input.slice(0,input.length-1);
-        while("\\n\t\\r ".indexOf(output.at(-1))!=-1) output=output.slice(0,output.length-1);
+        while("\\n\\t\\r ".indexOf(input.at(-1))!=-1) input=input.slice(0,input.length-1);
+        while("\\n\\t\\r ".indexOf(output.at(-1))!=-1) output=output.slice(0,output.length-1);
         info.tests.push({input:input,output:output});
     }
     console.log("SEND INFO",info);
@@ -103,6 +103,7 @@ function addExtraContent()
         \`<h4 class="ui top attached block header">样例</h4>\`,
         \`<h4 class="ui top attached block header" id="Example">样例</h4>\`
     );
+    if(!document.getElementById('Example')) return (console.log("Not in the problem page."),false);
     testcase=document.getElementById('Example').nextElementSibling;
     let res=testcase.innerHTML.match(/<div class="ui existing segment"><pre style="margin-top: 0; margin-bottom: 0; "><code><span class="hl-text hl-plain">(?:[^<]*)<\\/span><\\/code><\\/pre>/gm);
     res.map((it,idx)=>{testcase.innerHTML=testcase.innerHTML.replace(it,it.replace('segment"',\`segment copyTextDown" id="test\${idx}"\`))});
@@ -120,17 +121,16 @@ function addExtraContent()
         {
             let copyText=item.parentNode.nextElementSibling;
             copyText=copyText.firstChild.firstChild.firstChild.innerText;
-            while("\\n\t\\r ".indexOf(copyText.at(-1))!=-1) copyText=copyText.slice(0,copyText.length-1);
+            while("\\n\\t\\r ".indexOf(copyText.at(-1))!=-1) copyText=copyText.slice(0,copyText.length-1);
             copyContent(copyText);
         }
         else if(["transfer","transferInfo"].indexOf(item.id)!=-1&&item.innerText=="Transfer to CPH") sendProblemInfo();
-        return;
+        return true;
     });
-    return;
+    return true;
 }
 
 (function() {
     'use strict';
-    addExtraContent();
-    checkCphOpen();
+    if(addExtraContent()) checkCphOpen();
 })();`;
