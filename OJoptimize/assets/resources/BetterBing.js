@@ -1,4 +1,4 @@
-var sourceCode=`// ==UserScript==
+// ==UserScript==
 // @name         Better bing
 // @namespace    http://tampermonkey.net/
 // @version      0.1
@@ -75,4 +75,4 @@ function work()
     for(let i=0; i<temp.length; i++)
         temp[i].style.color="black";
     return;
-}`;
+}

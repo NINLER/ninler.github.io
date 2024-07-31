@@ -65,3 +65,15 @@ body {
     border:green 1pt solid;
     color:white;
 }
+
+.addressLink {
+    text-decoration: none;
+    color: white;
+    transition: all ease 0.15s;
+}
+
+.addressLink:hover {
+    color: rgb(0, 174, 255);
+    text-decoration: none;
+    transition: all ease 0.15s;
+}
