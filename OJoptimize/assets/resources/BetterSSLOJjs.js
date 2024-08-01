@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better SSLOJ
 // @namespace    http://tampermonkey.net/
-// @version      1.01
+// @version      1.1
 // @author       NINLER
 // @match        http://ssloj.cn/*
 // @grant        none
@@ -133,4 +133,94 @@ function addExtraContent()
 (function() {
     'use strict';
     if(addExtraContent()) checkCphOpen();
+    if(!document.getElementById('stylus-1')) addStyleIndex();
 })();
+
+function addStyleIndex()
+{
+    document.body.parentElement.innerHTML+=`
+        <style id="userscriptCSS">
+            .copyTextUp {
+                border-top-left-radius: 3pt;
+                border-top-right-radius: 3pt;
+                background-color: #c5c5c58c;
+                height: 25pt;
+                width: 100%;
+                font-size: 1rem;
+            }
+            
+            .copyTextUp > p {
+                padding-top: calc( 10pt - 0.5rem );
+                padding-left: 10pt;
+            }
+            
+            .copyTextDown {
+                margin-top: 0 !important;
+                border-top-left-radius: 0 !important;
+                border-top-right-radius: 0 !important;
+            }
+            
+            .copyInfo {
+                background-image: url("data:image/svg+xml;utf8,<svg class='icon' style='width: 1em;height: 1em;vertical-align: middle;fill: rgb(108, 117, 125);overflow: hidden;' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2669'><path d='M661.333333 234.666667A64 64 0 0 1 725.333333 298.666667v597.333333a64 64 0 0 1-64 64h-469.333333A64 64 0 0 1 128 896V298.666667a64 64 0 0 1 64-64z m-21.333333 85.333333H213.333333v554.666667h426.666667v-554.666667z m191.829333-256a64 64 0 0 1 63.744 57.856l0.256 6.144v575.701333a42.666667 42.666667 0 0 1-85.034666 4.992l-0.298667-4.992V149.333333H384a42.666667 42.666667 0 0 1-42.368-37.674666L341.333333 106.666667a42.666667 42.666667 0 0 1 37.674667-42.368L384 64h447.829333z' p-id='2670'></path></svg>");
+                display:inline-block;
+                transition:all ease 0.25s;
+                width: 1.3rem !important;
+                height: 1.3rem !important;
+                background-repeat:no-repeat;
+                transform: translateX(3pt) translateY(calc( 10pt - 0.7rem ));
+            }
+            
+            .copyInfo:hover {
+                transition:all ease 0.25s;
+                background-image: url("data:image/svg+xml;utf8,<svg class='icon' style='width: 1em;height: 1em;vertical-align: middle;fill: white;overflow: hidden;' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2669'><path d='M661.333333 234.666667A64 64 0 0 1 725.333333 298.666667v597.333333a64 64 0 0 1-64 64h-469.333333A64 64 0 0 1 128 896V298.666667a64 64 0 0 1 64-64z m-21.333333 85.333333H213.333333v554.666667h426.666667v-554.666667z m191.829333-256a64 64 0 0 1 63.744 57.856l0.256 6.144v575.701333a42.666667 42.666667 0 0 1-85.034666 4.992l-0.298667-4.992V149.333333H384a42.666667 42.666667 0 0 1-42.368-37.674666L341.333333 106.666667a42.666667 42.666667 0 0 1 37.674667-42.368L384 64h447.829333z' p-id='2670'></path></svg>");
+            }
+            
+            .copyInfo:active {
+                transition:all ease 0.1s;
+                background-image: url("data:image/svg+xml;utf8,<svg class='icon' style='width: 1em;height: 1em;vertical-align: middle;fill: rgb(75,255,50);overflow: hidden;' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2669'><path d='M661.333333 234.666667A64 64 0 0 1 725.333333 298.666667v597.333333a64 64 0 0 1-64 64h-469.333333A64 64 0 0 1 128 896V298.666667a64 64 0 0 1 64-64z m-21.333333 85.333333H213.333333v554.666667h426.666667v-554.666667z m191.829333-256a64 64 0 0 1 63.744 57.856l0.256 6.144v575.701333a42.666667 42.666667 0 0 1-85.034666 4.992l-0.298667-4.992V149.333333H384a42.666667 42.666667 0 0 1-42.368-37.674666L341.333333 106.666667a42.666667 42.666667 0 0 1 37.674667-42.368L384 64h447.829333z' p-id='2670'></path></svg>");
+            }
+            
+            .CPHunavailable {
+                display: inline-block;
+                background: #87000094;
+                margin-left: calc( 100% - 2rem - 23px - 85pt );
+                /* display: none; */
+                font-size: 15px;
+                position: relative;
+                border-radius: 5px;
+                transition: all ease 0.25s;
+            }
+            
+            .CPHunavailable:hover {
+                background: #b80000;
+                transition: all ease 0.25s;
+            }
+            
+            .transferToCPH {
+                display: inline-block;
+                background: #b6b6b6;
+                margin-left: calc( 100% - 2rem - 23px - 85pt );
+                /* display: none; */
+                font-size: 15px;
+                position: relative;
+                border-radius: 5px;
+                transition: all ease 0.25s;
+            }
+            
+            .transferToCPH:hover {
+                background: #00b390;
+                transition: all ease 0.25s;
+            }
+            
+            .transferToCPH:active {
+                background: #1ba61f;
+                transition: all ease 0.1s;
+            }
+            
+            .transferToCPH > p, .CPHunavailable > p {
+                margin: 1pt 7pt 1pt 7pt;
+            }
+        </style>
+    `;
+    return;
+}
