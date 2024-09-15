@@ -29,6 +29,12 @@ header {
     transition: ease 0.25s all;
 }
 
+.card {
+    background-color: black !important;
+    width:100%;
+    min-height: 274pt;
+}
+
 /* Id */
 
 #scroll-down {
@@ -50,6 +56,7 @@ header {
 }
 
 .bg-img {
+    background-color: black;
     background-position: center 0pt;
     background-repeat: no-repeat;
     background-size: cover;
