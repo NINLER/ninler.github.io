@@ -1,0 +1,22 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+body {
+    overflow:hidden;
+}
+
+#canvas {
+    width: 100vw;
+    height: 100vh;
+}
+
+#fps {
+    position:fixed;
+    top:10pt;
+    left:10pt;
+    font-family: Consolas;
+    pointer-events: none;
+    user-select: none;
+}

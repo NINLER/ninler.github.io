@@ -19,11 +19,11 @@ $.render=()=>{
 
 $.loadWebsites=()=>{
     const data=[
-        {name:"神奇迷宫验证码",info:"疑似人身攻击",image:"./assets/img/7.png",address:"./maze-captcha/maze-captcha.html"},
-        {name:"网站解谜",info:"好吧有人已经通关了",image:"./assets/img/13.png",address:"./puzzle/problem/problem1.html"},
-        {name:"博弈论",info:"爆算 SG 函数",image:"./assets/img/5.png",address:"./Game134/index.html"},
-        {name:"网站资源",info:"让你的网站更美观便利",image:"./assets/img/6.png",address:"./OJoptimize/index.html"},
-        {name:"Numble",info:"Wordle 的变种",image:"./assets/img/9.png",address:"./Numble/index.html"},
+        {name:"神奇迷宫验证码",info:"疑似人身攻击",image:"https://s21.ax1x.com/2024/09/10/pAm08bR.jpg",address:"./maze-captcha/maze-captcha.html"},
+        {name:"网站解谜",info:"好吧有人已经通关了",image:"https://s21.ax1x.com/2024/09/10/pAm0M2F.png",address:"./puzzle/problem/problem1.html"},
+        {name:"博弈论",info:"爆算 SG 函数",image:"https://s21.ax1x.com/2024/09/10/pAm03r9.webp",address:"./Game134/index.html"},
+        {name:"网站资源",info:"让你的网站更美观便利",image:"https://s21.ax1x.com/2024/09/10/pAm0JV1.png",address:"./OJoptimize/index.html"},
+        {name:"Numble",info:"Wordle 的变种",image:"https://s21.ax1x.com/2024/09/10/pAm0uCT.webp",address:"./Numble/index.html"},
     ];
     const template=(name,info,img,wid,address)=>{
         return `
