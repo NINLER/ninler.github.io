@@ -9,19 +9,21 @@
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/>
         <link href="./assets/css/main.css" rel="stylesheet"/>
         <link href="./assets/css/index.css" rel="stylesheet"/>
+        <link href="./assets/css/history.css" rel="stylesheet"/>
         <link href="./assets/css/vendor/aos.css" rel="stylesheet"/>
     </head>
     <body>
+        <!-- Header -->
         <header class="bg-img" style="position: relative;">
             <div class="header-text">
                 <section data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1000" data-aos-once="true">
                     <h1 class="display-4 consolas">ninler.github.io</h1>
-                    <h5 class="font-weight-light mb-4">version 2.0</h5>
+                    <h5 class="font-weight-light mb-4">Version 2.0</h5>
                 </section>
             </div>
             <div id="scroll-down">
                 <section data-aos="fade-down" data-aos-easing="ease-out" data-aos-offset="-10" data-aos-duration="500" data-aos-delay="1100">
-                    <p pbottom=10 mbottom=0 class="consolas">Scroll to display more</p>
+                    <p pbottom=10 mbottom=0 class="consolas">Scroll to view more</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                         <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -29,22 +31,37 @@
                 </section>
             </div>
         </header>
+        <!-- Main Div -->
         <div class="container w-75" mtop=20>
+            <!-- About -->
             <section class="pt-4 pb-5" data-aos="fade-out">
                 <h3 class="h5 mb-4 font-weight-bold">About me</h3>
-                <div>Hello visitor! I'm <kbd>NINLER</kbd> from China!<br>You can also find me in <a href="https://luogu.com/user/144853" class="a-self">Luogu</a>!</div>
+                <div>Hello visitor! I'm <kbd>NINLER</kbd> from China!<br>You can also find me in <a href="https://github.com/NINLER" class="a-self">Github</a>!</div>
             </section> <hr>
+            <!-- Website -->
             <section class="pt-4 pb-5 align-items-center" data-aos="fade-out" id="websites">
                 <h3 class="h5 mb-4 font-weight-bold">Websites</h3>
-                <!-- Websites -->
             </section>
         </div>
+        <!-- Footer -->
         <footer class="bg-black pb-5">
             <div class="container text-center align-items-center text-white">
                 <div ptop=20>Copyright © <script>document.write(new Date().getFullYear())</script> ninler, All rights reserved.</div>
                 <div ptop=5>View it on <a href="https://github.com/ninler/ninler.github.io" class="a-self">Github</a> .</div>
             </div>
         </footer>
+        <!-- History Block -->
+        <div class="history">
+            <div class="history-block">
+                <input type="input" class="history-input" name="history-input">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+                    <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                    <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                    <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+            </div>
+            <div class="history-content"></div>
+        </div>
         <!--------------------------------------
         JAVASCRIPTS
         --------------------------------------->
@@ -54,7 +71,10 @@
         <script src="./assets/js/vendor/share.js" type="text/javascript"></script>
         <script src="./assets/js/functions.js" type="text/javascript"></script>
         <script src="./assets/js/renders.js" type="text/javascript"></script>
-        <script src="./assets/js/index.js" type="text/javascript"></script>
+        <script src="./assets/js/history.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $.loadWebsites(); $.render(); $.loadHistory();
+        </script>
         <!-- Animation -->
         <script src="./assets/js/vendor/aos.js" type="text/javascript"></script>
         <noscript>

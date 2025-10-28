@@ -1,3 +1,0 @@
-(()=>{
-    $.loadWebsites(); $.render();
-})()

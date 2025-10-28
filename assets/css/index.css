@@ -1,5 +1,9 @@
 /* Elements */
 
+body {
+    position: relative;
+}
+
 header {
     background-image: url("https://s21.ax1x.com/2024/09/10/pAm0Qv4.png");
     background-color:black;
