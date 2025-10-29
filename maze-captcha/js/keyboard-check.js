@@ -45,34 +45,32 @@ document.onclick=function(event)
         ShowMaze();
     }
 }
-document.onkeypress=function(event)
-{
-    if(time1=='not start')
-        time1=new Date();
-    var temp=event.keyCode;
-    // console.log(temp);
-    if(temp==97)
-    {
-        if(py>0&&maze[px][py-1]!=0)
-            maze[px][py]=4,py=py-1,step=step-1;
-        ShowMaze();
-    }
-    if(temp==119)
+document.addEventListener('keydown',(event)=>{
+    if(time1=='not start') time1=new Date();
+    var key=event.key;
+    // console.log(key);
+    if(["W",'w','ArrowUp'].includes(key))
     {
         if(px>0&&maze[px-1][py]!=0)
             maze[px][py]=4,px=px-1,step=step-1;
         ShowMaze();
     }
-    if(temp==115)
+    if(["A",'a','ArrowLeft'].includes(key))
     {
-        if(px<9&&maze[px+1][py]!=0)
-            maze[px][py]=4,px=px+1,step=step-1;
+        if(py>0&&maze[px][py-1]!=0)
+            maze[px][py]=4,py=py-1,step=step-1;
         ShowMaze();
     }
-    if(temp==100)
+    if(["D",'d','ArrowRight'].includes(key))
     {
         if(py<9&&maze[px][py+1]!=0)
             maze[px][py]=4,py=py+1,step=step-1;
         ShowMaze();
     }
-}
+    if(["S",'s','ArrowDown'].includes(key))
+    {
+        if(px<9&&maze[px+1][py]!=0)
+            maze[px][py]=4,px=px+1,step=step-1;
+        ShowMaze();
+    }
+});

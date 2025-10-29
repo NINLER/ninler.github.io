@@ -1,3 +1,89 @@
 body {
     background-color: black !important;
+    text-align: center;
+    align-items: center;
+}
+
+.container > * {
+    margin-top: 20px;
+    margin-bottom: 0;
+    color: white;
+    text-align: center;
+}
+
+.cell-grid {
+    position: absolute;
+    text-align: left;
+    width: 100%;
+    left: auto;
+    right: auto;
+}
+
+.cell {
+    width:50px;
+    height:50px;
+    border-radius: 5px;
+    background-color: rgb(194, 194, 194);
+    margin: 3px;
+    margin-top: 0;
+    display: inline-block;
+}
+
+.cell.pick1 {
+    background-color: rgb(216, 46, 46) !important;
+}
+
+.cell.pick2 {
+    background-color: rgb(0, 119, 255) !important;
+}
+
+.cell.lst {
+    border: goldenrod 2px solid;
+}
+
+.box {
+    border: solid 1px white;
+    color:white;
+    padding: 7px;
+    font-family: consolas;
+}
+
+.box.ban {
+    background-color: rgba(138, 0, 0, 0.479);
+}
+
+.cell-num {
+    width: 100%;
+}
+
+.cell-hint {
+    text-align: left;
+}
+
+.cell-hint > span {
+    font-family: consolas;
+}
+
+.oper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.oper > .box {
+    display: inline-block;
+    flex-grow: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    user-select: none;
+}
+
+#win-lose {
+    margin-left: 20px;
+}
+
+#win-tip {
+    color: grey;
+    float: right;
+    display: none;
 }

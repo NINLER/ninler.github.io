@@ -5,7 +5,7 @@ function mapInit()
         ret[i]=Array(200);
     let str=`
 00000000000000000
-0M111111011111110
+0M1111110111111M0
 01000001010000010
 01011111111111010
 01010010001001010
@@ -24,7 +24,7 @@ function mapInit()
     let temp=str.split('\n').splice(1);
     // console.log(temp);
     for(let i=0; i<temp.length; i++)
-        for(let j=0; j<temp[i].length; j++)
+        for(let j=0; j<temp[i].trim().length; j++)
             ret[i][j]=['0','1','M','P'].indexOf(temp[i][j]);
     return ret;
     /* Code : Block=0,0 Road=1,1 Monster=M,2 Player=P,3 */

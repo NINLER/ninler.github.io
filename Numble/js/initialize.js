@@ -24,13 +24,13 @@ function gameWin()
         return;
     window.setTimeout(()=>{
         document.getElementById('win').className='notice';
-        localData[6]=(parseInt(localData[6])+1).toString();
+        localData[6]=(localData[6]-0+1)+'';
         console.log(line);
-        localData[line]=(parseInt(localData[line])+1).toString();
+        localData[line-1]=(localData[line-1]-0+1)+'';
         writeData(localData);
         progressWinLose();
         progressTimes1to6();
-    },750);
+    },0);
     return;
 }
 
@@ -40,11 +40,11 @@ function gameLose()
         return;
     window.setTimeout(()=>{
         document.getElementById('lose').className='notice';
-        localData[7]=(parseInt(localData[7])+1).toString();
+        localData[7]=(localData[7]-0+1)+'';
         writeData(localData);
         progressWinLose();
         progressTimes1to6();
-    },750);
+    },0);
     return;
 }
 

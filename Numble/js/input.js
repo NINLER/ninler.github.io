@@ -4,10 +4,9 @@ var line=0;
 var mesnum=0;
 var gamedoing=0;
 
-document.onkeydown=function(event)
-{
+document.addEventListener("keydown",(event)=>{
     let temp=event.key;
-    if(temp=='f')
+    if(temp=='f'||temp=='F')
     {
         document.getElementById('mess').innerHTML='';
         return;
@@ -56,7 +55,7 @@ document.onkeydown=function(event)
     }
     processInput();
     return;
-}
+});
 
 function giveOutput(l,equ)
 {

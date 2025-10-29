@@ -1,12 +1,7 @@
 function update()
 {
     let temp=document.getElementById('bestRecordLeft');
-    // console.log(temp);
-    // console.log(temp.firstElementChild);
-    // console.log(temp.firstElementChild.firstElementChild);
-    // console.log(temp.firstElementChild.firstElementChild.firstElementChild);
     temp=temp.firstElementChild.firstElementChild.firstElementChild;
-    // temp=temp.firstChild.firstChild.firstChild;
     if(localStorage.getItem('best-maze-time')==undefined)
         temp.innerText='No Record.';
     else
@@ -26,5 +21,4 @@ function update()
     temp.innerText='Lose:'+localStorage.getItem('maze-lose-times');
     return;
 }
-// update();
 setInterval('update()',10);
