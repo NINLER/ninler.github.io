@@ -86,4 +86,5 @@ body {
     color: grey;
     float: right;
     display: none;
+    cursor: pointer;
 }

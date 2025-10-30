@@ -46,6 +46,7 @@ div {
     transform:translateX(7.5pt) translateY(-5pt);
     border-radius:5pt;
     transition:all 0.25s ease;
+    user-select: none;
 }
 .arrow:hover {
     background-color: rgb(20, 141, 172);

@@ -22,7 +22,7 @@ $.renderBox=()=>{
     {
         playing=false,cellNum.removeAttribute("disabled");
         document.getElementById("start").innerHTML="Start";
-        if(turn==1) document.getElementById("win-lose").innerHTML="You win.";
+        if(turn==1) document.getElementById("win-lose").innerHTML="You win.",cellNum.removeAttribute("disabled");
         else document.getElementById("win-lose").innerHTML="Bot wins.",winTip.style.display="block";
     }
     return;
