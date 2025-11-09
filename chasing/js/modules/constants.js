@@ -1,6 +1,9 @@
-const framePerSecond=1000/60,blka=50,speed=4,monsterSpeed=4;
+const canvasWidth=750,canvasHeight=750;
+const blka=50;
+
 const hex=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
 const dir8=[[0,-1,-1,-1,0,0,1,1,1],[0,-1,0,1,-1,1,-1,0,1]];
+const charList=['#','.','B','A','C','E','Q','S'];
 const dir={
     0:'UP',1:'RIGHT',2:'DOWN',3:'LEFT',
     'UP':{x:0,y:-1},
@@ -8,10 +11,26 @@ const dir={
     'DOWN':{x:0,y:1},
     'LEFT':{x:-1,y:0},
 };
+
 const arc=2*Math.PI,pi=Math.PI;
 
+/* Level Configurations (Not Constant) */
+var visableOption=true;
+var speed=4,monsterSpeed=4,visionRange=3.5*blka;
+var stunTime=10,visionTime=10,readyTime=1.5;
+
+const defaultConfiguration={
+    "speed":4,
+    "monsterSpeed":4,
+    "visableOption":true,
+    "visionRange":3.5,
+    "stunTime":10,
+    "visionTime":10,
+    "readyTime":5
+}
+
 class Block{
-    constructor(cx,cy,cry=false)
+    constructor(cx,cy,cry=0)
     {
         cx=cx*blka+blka/2,cy=cy*blka+blka/2;
         this.center={x:cx,y:cy};

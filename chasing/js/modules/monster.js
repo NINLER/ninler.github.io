@@ -30,6 +30,8 @@ function monsterPathBfs(pos={x:0,y:0},tar={x:0,y:0})
 function monsterMove(now,tar,speed,last,monsterId,debug=false)
 {
     if(debug) { return [now,last]; }
+    if(nowTime-stunStart<=stunTime*1000) return [now,last]; // Enemy stunning.
+    if(nowTime-stTime<=readyTime*1000) return [now,last];
     // console.log(now,tar);
     let nowblk=create(Math.floor(now.x/blka),Math.floor(now.y/blka))
     let bfsResult=monsterPathBfs(nowblk,create(Math.floor(tar.x/blka),Math.floor(tar.y/blka))),nxtpos,res;

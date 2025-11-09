@@ -1,0 +1,34 @@
+gameStatus : {ALIVE, DIED, COLLECT OVER}
+mv : velocity <pii>
+pl : player pos <pii>
+blkdat : block data <Block>
+mapInBin : map info <Array: Array: Int>
+monst : monster list <Array: [pii, pii]>
+notice : the notice on the top left (2nd row) <String>
+spawn : the goal. <pii>
+stunAva : stun available? <Boolean>
+visionAva : vision available? <Boolean>
+
+--- Only used in vision mode ---
+
+visable: block visibility <Array: Array: Boolean>
+
+--- Map info ---
+Block       # -> 0
+Crystal     . -> 1
+Monster     B -> 2
+Player      A -> 3
+Goal        C -> 4
+Empty       E -> 5
+Vision Cry. Q -> 6
+Stun Cry.   S -> 7
+
+defaultConfiguration: {
+    "speed":4,
+    "monsterSpeed":4,
+    "visableOption":true,
+    "visionRange":3.5,
+    "stunTime":10,
+    "visionTime":10,
+    "readyTime":5
+}

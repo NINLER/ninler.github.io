@@ -28,10 +28,11 @@ function drawCircle(color,x,y,r,stroke=false,sangle=0,eangle=2*Math.PI)
     return;
 }
 
-function drawWord(text,font,color,marginTop,marginLeft,stroke=false)
+function drawWord(text,font,color,marginTop,marginLeft,stroke=false,textAlign="left")
 {
     canvas.fillStyle=color;
     canvas.font=font;
+    canvas.textAlign=textAlign;
     if(stroke)
         canvas.strokeText(text,marginLeft,marginTop);
     else
