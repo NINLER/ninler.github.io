@@ -4,7 +4,36 @@
     </head>
     <body>
         <div class="container">
-            <canvas id='canvas' width='750' height='750' style='border: black solid 2pt;'>
+            <div class="box">
+                <canvas id='canvas' width='750' height='750'></canvas>
+                <div class="menu active" id="menu">
+                    <div class="pos" style="top: 20px; left: 20px; font-size: 20px;">Chasing</div>
+                    <div id="start" class="option pos" style="bottom: 50px; left: 20px; font-size: 20px;">
+                        <div class="select">&lt;</div> Start <div class="select">&gt;</div>
+                    </div>
+                    <div id="about" class="option pos" style="bottom: 20px; left: 20px; font-size: 20px; color: grey;">
+                        <div class="select">&lt;</div> About <div class="select">&gt;</div>
+                    </div>
+                </div>
+                <div class="menu" id="level">
+                    <div id="exit" class="option pos" style="top: 20px; left: 20px; font-size: 20px;">
+                        <div class="select">&lt;</div> Exit <div class="select">&gt;</div> <div class="hint">(X)</div>
+                    </div>
+                    <div id="prev" class="option pos" style="bottom: 20px; left: 20px; font-size: 20px;">
+                        <div class="select">&lt;</div>&lt;-- <div class="hint">(Left/A)</div>
+                    </div>
+                    <div id="this" class="option pos" style="bottom: 20px; left: 250px; width: 250px; font-size: 20px; text-align: center;">
+                        <div class="select">&lt;</div> Challenge <div class="select">&gt;</div>
+                    </div>
+                    <div class="pos hint" style="bottom: 50px; left: 250px; width: 250px; font-size: 20px; text-align: center;">
+                        (C)
+                    </div>
+                    <div id="next" class="option pos" style="bottom: 20px; right: 20px; font-size: 20px;">
+                        <div class="hint">(Right/D)</div> --&gt;<div class="select">&gt;</div>
+                    </div>
+                    <div id="levelInfo"></div>
+                </div>
+            </div>
             <script src='js/loadResource.js'></script>
         </div>
     </body>

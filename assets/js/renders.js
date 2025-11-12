@@ -24,12 +24,13 @@ $.loadWebsites=()=>{
         {name:"Block 134",info:"爆算 SG 函数",image:"./assets/img/5.webp",address:"./Game134/index.html"},
         {name:"网站资源",info:"让你的网站更美观便利",image:"./assets/img/6.png",address:"./OJoptimize/index.html"},
         {name:"Numble",info:"Wordle 的变种",image:"./assets/img/9.jpg",address:"./Numble/index.html"},
+        {name:"Chasing",info:"变种吃豆人",image:"./assets/img/15.png",address:"./chasing/index.html"},
     ];
     const template=(name,info,img,wid,address)=>{
         return `
             <div class="col-lg-${wid}">
-                <div class="card bg-dark overlay overlay-black text-white shadow-sm border-0">
-                    <img class="card-img rounded-sm" src="${img}" alt="Card image">
+                <div class="card bg-dark overlay overlay-black text-white shadow-sm border-0" style="height: 220pt">
+                    <img class="card-img rounded-sm" src="${img}" alt="Card image" style="height: 100%">
                     <div class="card-img-overlay d-flex align-items-center text-center">
                         <div class="card-body">
                             <h3 class="card-title">${name}</h3>

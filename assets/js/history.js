@@ -1,4 +1,5 @@
 const HistoryInfo=[
+    {version: "2.2", info: "· Chasing 模块写完了喵！"},
     {version: "2.2", info: "· 将 Game 134 重修了一遍。<br>· 找到了之前的历史更新记录喵！"},
     {version: "2.1", info: "· 添加了历史记录栏。<br>· 将 博弈论 改名为 Game 134。"},
     {version: "2.0", info: "· 网站主页重写了一遍喵！"},

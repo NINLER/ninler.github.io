@@ -9,3 +9,55 @@
     align-items: center;
     justify-content: center;
 }
+
+.container > canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.box {
+    position: relative;
+    height: 750px;
+    width: 750px;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: black solid 8pt;
+    height: 100%;
+    width: 100%;
+    background-color: lightblue;
+    z-index: 200;
+    display: none;
+    font-family: consolas;
+    user-select: none;
+}
+
+.menu .pos {
+    position: absolute;
+}
+
+.menu.active {
+    display: block;
+}
+
+.option > * {
+    pointer-events: none;
+}
+
+.option > .select {
+    display: none;
+}
+
+.option:hover > .select {
+    display: inline-block;
+}
+
+.hint {
+    display: inline-block;
+    color: grey;
+}

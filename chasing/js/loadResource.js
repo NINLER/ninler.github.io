@@ -4,6 +4,7 @@ const JsResourcesList=[
     "../assets/js/coding.js",
     "./js/modules/mapCoding.js",
     "./js/modules/map.js",
+    "./js/modules/menu.js",
     "./js/modules/monster.js",
     "./js/modules/gameLoop.js",
 ];
@@ -14,7 +15,7 @@ async function startGame(id)
 {
     cancelAnimationFrame(animationId);
     blkdat=Array(200),mapInBin=await mapInit(id),visable=Array(200);
-    mv={x:0,y:0},clickDir=[0,0,0,0],crystalCount=0;
+    mv={x:0,y:0},clickDir=[0,0,0,0],crystalCount=0,spawn=undefined;
     monst=new Array(),gameStatus='ALIVE',notice='';
     stunStart=false,visionStart=false,stTime=0;
     initGame(); work();

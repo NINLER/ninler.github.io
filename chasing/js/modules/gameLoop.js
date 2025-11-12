@@ -24,6 +24,7 @@ function initGame()
             if(mapInBin[i][j]==4) spawn=create(i,j);
         }
     }
+    console.log(spawn,plspawn);
     if(!spawn) spawn=copy(plspawn);
     return;
 }
@@ -122,11 +123,13 @@ function drawMap(ttpos)
 
 function work(lstTime=0)
 {
+    // Process Time
     nowTime=Date.now();
-    if(!lstTime) stTime=0,lstTime=Date.now();
-    if(gameStatus=='DIED'||gameStatus=='WIN')
-        return;
-    if(!stTime) stTime=nowTime-lstTime;
+    if(!lstTime) stTime=nowTime,lstTime=nowTime;
+    if(!stTime) stTime=nowTime;
+    if(gameStatus=='DIED'||gameStatus=='WIN') return;
+
+    // Process background
     crystalCount=0;
     drawRect("#111111",-1e10,-1e10,2e10,2e10);
     let tpos={x:pl.x,y:pl.y},ttpos;
@@ -134,20 +137,28 @@ function work(lstTime=0)
     tpos.y=Math.floor(pl.y/blka);
     ttpos={x:tpos.x,y:tpos.y};
     drawMap(false,ttpos);
-    if(gameStatus=='DIED') { drawWord('YOU DIED!','17pt Consolas','red',30,canvasWidth-120); return; }
+    drawWord('R to restart','15pt Consolas','orange',30,canvasWidth-15,false,"right");
+    drawWord('X to exit','15pt Consolas','orange',60,canvasWidth-15,false,"right");
+    if(gameStatus=='DIED')
+    {
+        drawWord('YOU DIED!','15pt Consolas','red',90,canvasWidth-15,false,"right");
+        drawWord("Time : "+((nowTime-stTime-readyTime*1000)/1000).toFixed(2)+'s',"20px Consolas",'lightblue',canvasHeight-20,canvasWidth-20,false,"right");
+        return;
+    }
 
     // Process Player Movement
-    // console.log(mv);
-    for(let i=0.1; i<=Math.abs(mv.x)||i<=Math.abs(mv.y); i+=0.1)
+    const stepBase=speed/10;
+    for(let i=stepBase; i<=Math.abs(mv.x)||i<=Math.abs(mv.y); i+=stepBase)
     {
-        let tar=playerMove(create((i<=Math.abs(mv.x)? 0.1*sgn(mv.x):0),(i<=Math.abs(mv.y)? 0.1*sgn(mv.y):0)),copy(ttpos));
+        let tar=playerMove(create((i<=Math.abs(mv.x)? stepBase*sgn(mv.x):0),(i<=Math.abs(mv.y)? stepBase*sgn(mv.y):0)),copy(ttpos));
         // console.log(tar);
         pl=copy(tar);
     }
     if(gameStatus=='COLLECT OVER'&&Math.floor(pl.x/blka)==spawn.x&&Math.floor(pl.y/blka)==spawn.y)
     {
         document.getElementById('canvas').style.border=`#1cc31c solid 8pt`;
-        drawWord('YOU WIN!','17pt Consolas','#1cc31c',30,canvasWidth-120);
+        drawWord('YOU WIN!','15pt Consolas','#1cc31c',90,canvasWidth-15,false,"right");
+        drawWord("Time : "+((nowTime-stTime-readyTime*1000)/1000).toFixed(2)+'s',"20px Consolas",'lightblue',canvasHeight-20,canvasWidth-20,false,"right");
         gameStatus='WIN';
         return;
     }
@@ -176,7 +187,7 @@ function work(lstTime=0)
     
     // Draw Stats
     drawCircle('rgb(3, 169, 244)',canvasWidth/2,canvasHeight/2,blka/4);
-    drawWord(`Crystals Left:${crystalCount}`,'15pt Consolas','#c76e1a',30,10);
+    drawWord(`Crystals Left:${crystalCount}`,'15pt Consolas','#c76e1a',30,15);
     drawWord(notice,'15pt Consolas','#ffb300',60,10);
     if(nowTime-stunStart<=stunTime*1000)
         drawWord("Stun remain : "+(stunTime-(nowTime-stunStart)/1000).toFixed(2)+'s',"18px Consolas",'#ffe169',canvasHeight-45,15);
@@ -198,10 +209,12 @@ document.addEventListener('keydown',(event)=>{
     // console.log(event.key);
     switch(event.key)
     {
-        case 'ArrowUp': case 'w': if(!clickDir[0]) clickDir[0]=1,mv.y-=speed; break;
-        case 'ArrowDown': case 's': if(!clickDir[1]) clickDir[1]=1,mv.y+=speed; break;
-        case 'ArrowLeft': case 'a': if(!clickDir[2]) clickDir[2]=1,mv.x-=speed; break;
-        case 'ArrowRight': case 'd': if(!clickDir[3]) clickDir[3]=1,mv.x+=speed; break;
+        case 'ArrowUp': case 'w': case 'W': if(!clickDir[0]) clickDir[0]=1,mv.y-=speed; break;
+        case 'ArrowDown': case 's': case 'S': if(!clickDir[1]) clickDir[1]=1,mv.y+=speed; break;
+        case 'ArrowLeft': case 'a': case 'A': if(!clickDir[2]) clickDir[2]=1,mv.x-=speed; break;
+        case 'ArrowRight': case 'd': case 'D': if(!clickDir[3]) clickDir[3]=1,mv.x+=speed; break;
+        case 'x': case 'X': document.getElementById('level').classList.add("active"); flushLevel(); gameStatus="ALIVE"; break;
+        case 'r': case 'R': startGame(nowDisplay-1); break;
     }
     // console.log(clickDir,mv);
     return;
@@ -210,10 +223,10 @@ document.addEventListener('keydown',(event)=>{
 document.addEventListener('keyup',(event)=>{
     switch(event.key)
     {
-        case 'ArrowUp': case 'w': if(clickDir[0]) clickDir[0]=0,mv.y+=speed; break;
-        case 'ArrowDown': case 's': if(clickDir[1]) clickDir[1]=0,mv.y-=speed; break;
-        case 'ArrowLeft': case 'a': if(clickDir[2]) clickDir[2]=0,mv.x+=speed; break;
-        case 'ArrowRight': case 'd': if(clickDir[3]) clickDir[3]=0,mv.x-=speed; break;
+        case 'ArrowUp': case 'w': case 'W': if(clickDir[0]) clickDir[0]=0,mv.y+=speed; break;
+        case 'ArrowDown': case 's': case 'S': if(clickDir[1]) clickDir[1]=0,mv.y-=speed; break;
+        case 'ArrowLeft': case 'a': case 'A': if(clickDir[2]) clickDir[2]=0,mv.x+=speed; break;
+        case 'ArrowRight': case 'd': case 'D': if(clickDir[3]) clickDir[3]=0,mv.x-=speed; break;
     }
     return;
 });

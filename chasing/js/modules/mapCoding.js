@@ -38,5 +38,5 @@ function decodeMap(data="")
     width=data[0]-0; data=data.slice(1);
     data=data.map(it=>charList[it[0].charCodeAt()-65].repeat(it.length>1? it.substr(1)-0:1)).join('');
     data=data.split('').map((it,idx)=>it+'\n'.repeat(!((idx+1)%width))).join('');
-    return [id,config,data];
+    return [id,config,[data.split('\n').length,width],data];
 }
