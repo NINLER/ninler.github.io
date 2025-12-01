@@ -20,11 +20,12 @@ $.render=()=>{
 $.loadWebsites=()=>{
     const data=[
         {name:"神奇迷宫验证码",info:"疑似人身攻击",image:"./assets/img/7.jpg",address:"./maze-captcha/maze-captcha.html"},
-        {name:"网站解谜",info:"好吧有人已经通关了",image:"./assets/img/13.png",address:"./puzzle/problem/problem1.html"},
-        {name:"Block 134",info:"爆算 SG 函数",image:"./assets/img/5.webp",address:"./Game134/index.html"},
-        {name:"网站资源",info:"让你的网站更美观便利",image:"./assets/img/6.png",address:"./OJoptimize/index.html"},
-        {name:"Numble",info:"Wordle 的变种",image:"./assets/img/9.jpg",address:"./Numble/index.html"},
+        {name:"日历拼图",info:"好玩的拼图！",image:"./assets/img/16.png",address:"./calendar/index.html"},
         {name:"Chasing",info:"变种吃豆人",image:"./assets/img/15.png",address:"./chasing/index.html"},
+        {name:"Block 134",info:"爆算 SG 函数",image:"./assets/img/5.webp",address:"./Game134/index.html"},
+        {name:"Numble",info:"Wordle 的变种",image:"./assets/img/9.jpg",address:"./Numble/index.html"},
+        {name:"网站资源",info:"让你的网站更美观便利",image:"./assets/img/6.png",address:"./OJoptimize/index.html"},
+        {name:"网站解谜",info:"好吧有人已经通关了",image:"./assets/img/13.png",address:"./puzzle/problem/problem1.html"},
     ];
     const template=(name,info,img,wid,address)=>{
         return `

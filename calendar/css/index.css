@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    --cell-blka: 50px;
+}
+
+html {
+    overflow: hidden;
+}
+
+.text {
+    position: absolute;
+    width: 100%;
+    top: -175px;
+    user-select: none;
+}
+
+.text > div {
+    width: 100%;
+    text-align: center;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container > div {
+    position: relative;
+}
+
+.chess {
+    display: grid;
+    grid-template-columns: repeat(7, var(--cell-blka));
+    grid-template-rows: repeat(8, val(--cell-blka));
+}
+
+.jigsaw {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(4, var(--cell-blka));
+    grid-template-rows: repeat(4, val(--cell-blka));
+    transition: all ease 0.1s;
+    pointer-events: none;
+}
+
+.jigsaw:active {
+    z-index: 200;
+}
+
+.jigsaw > .cell:not(.null) {
+    pointer-events: auto;
+}
+
+.cell {
+    height: var(--cell-blka);
+    width: var(--cell-blka);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Consolas;
+    font-size: 17px;
+    user-select: none;
+}
+
+.cell.null {
+    user-select: none;
+    pointer-events: none;
+}
+
+.cell.empty {
+    border-radius: 3px;
+    background-color: rgb(236, 236, 236);
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.banned {
+    border-radius: 3px;
+    background-color: rgb(143, 143, 143);
+    box-shadow: grey .5pt .5pt 1pt 1pt;
+}
+
+.cell.darkred {
+    border-radius: 3px;
+    background-color: darkred;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.red {
+    border-radius: 3px;
+    background-color: red;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.orange {
+    border-radius: 3px;
+    background-color: orange;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.yellow {
+    border-radius: 3px;
+    background-color: yellow;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.lightgreen {
+    border-radius: 3px;
+    background-color: lightgreen;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.green {
+    border-radius: 3px;
+    background-color: green;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.lightblue {
+    border-radius: 3px;
+    background-color: lightskyblue;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.blue {
+    border-radius: 3px;
+    background-color: blue;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.purple {
+    border-radius: 3px;
+    background-color: purple;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
+
+.cell.darkblue {
+    border-radius: 3px;
+    background-color: darkblue;
+    box-shadow: rgb(150, 150, 150) .5pt .5pt 1pt 1pt;
+}
