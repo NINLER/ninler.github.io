@@ -10,7 +10,7 @@ html {
 .text {
     position: absolute;
     width: 100%;
-    top: -175px;
+    top: -200px;
     user-select: none;
 }
 

@@ -10,7 +10,12 @@ function LoadJigsawEvents()
         for(let it of parts)
             it.addEventListener('mousedown',function(ev) {
                 if(!(ev.buttons&1)) return;
+                const jigsaw=document.getElementsByClassName('jigsaw');
+                for(let it of jigsaw)
+                    if(it.classList.contains('follow'))
+                        return;
                 JigsawMouseIn(this.parentElement);
+                return;
             });
     }
 
@@ -31,7 +36,12 @@ function LoadJigsawEvents()
                 for(let it of parts)
                     it.addEventListener('mousedown',function(ev) {
                         if(!(ev.buttons&1)) return;
+                        const jigsaw=document.getElementsByClassName('jigsaw');
+                        for(let it of jigsaw)
+                            if(it.classList.contains('follow'))
+                                return;
                         JigsawMouseIn(this.parentElement);
+                        return;
                     });
             }
         return;
@@ -116,6 +126,7 @@ function JigsawMouseOut(self)
     let stx=self.offsetLeft,sty=self.offsetTop;
     let x=stx,y=sty; [x,y]=JigsawStickToBoard(self,[x,y]);
     self.style.left=x+'px',self.style.top=y+'px';
+    CheckComplete();
     return;
 }
 
@@ -130,7 +141,7 @@ function JigsawMouseMove(self)
 
 function JigsawStickToBoard(self,def)
 {
-    const cells=document.querySelectorAll(".chess > .cell");
+    const cells=document.querySelectorAll(".chess > .cell:not(.null)");
     const parts=[...self.children].filter(it=>!it.classList.contains('null'));
     let mxdis=-Infinity,mn=Infinity,off=[];
     for(let it of parts)
@@ -155,4 +166,31 @@ function JigsawStickToBoard(self,def)
     }
     // console.log("return def",mxdis,off);
     return def;
+}
+
+function CheckComplete()
+{
+    const win=document.getElementById('win');
+    const cells=document.querySelectorAll(".chess > .cell:not(.null)");
+    const parts=document.querySelectorAll(".jigsaw > .cell:not(.null)");
+    win.style.opacity=0;
+    for(let c of cells)
+    {
+        if(c.classList.contains("banned")) continue;
+        let rect={top: c.offsetTop-0, left: c.offsetLeft-0};
+        let mndis=Infinity;
+        for(let it of parts)
+        {
+            let self=it.parentElement;
+            let top=it.offsetTop+self.offsetTop;
+            let left=it.offsetLeft+self.offsetLeft;
+            let val=(top-rect.top)**2+(left-rect.left)**2;
+            console.log(top,left,rect.top,rect.left);
+            if(mndis>val) mndis=val;
+        }
+        // if(mndis>30**2) console.log("check",c,mndis);
+        if(mndis>30**2) return false;
+    }
+    win.style.opacity=1;
+    return true;
 }

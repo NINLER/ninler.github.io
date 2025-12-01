@@ -8,15 +8,20 @@
             <div>
                 <div class="text">
                     <div>日期拼图</div><br>
-                    <div>用这些拼图拼出今天的日期吧！</div><br>
-                    <div style="color: grey; font-family: consolas;">
-                        &lt;左键&gt; 拖动, &lt;R/右键&gt; 旋转, &lt;F&gt; 上下翻转
+                    <div>
+                        用这些拼图拼出今天的日期吧！<br>
+                        今天是：<input id="date" type="date" />
+                    </div>
+                    <div style="color: grey; font-family: consolas; margin-top: 8px; margin-bottom: 7.5px;">
+                        &lt;左键&gt; 拖动, &lt;R/右键&gt; 旋转, &lt;F&gt; 上下翻转<br>
+                        灰色的格子不能被覆盖
+                    </div>
+                    <div id="win" style="color: green; font-family: consolas;">
+                        🎉恭喜！你解决了谜题！🎉
                     </div>
                 </div>
-                <div class="chess" id="chess">
-                </div>
-                <div id="jigsaw-container">
-                </div>
+                <div class="chess" id="chess"></div>
+                <div id="jigsaw-container"></div>
             </div>
         </div>
         <script src="./js/move.js"></script>

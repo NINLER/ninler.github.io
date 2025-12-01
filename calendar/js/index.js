@@ -1,4 +1,4 @@
-function LoadCell()
+function LoadCell(tm=new Date())
 {
     const chess=document.getElementById("chess");
     const board=[
@@ -16,12 +16,12 @@ function LoadCell()
         "Jul","Aug","Sept","Oct","Nov","Dec",
     ]
     const Week=["Sun","Mon","Tues","Wed","Thur","Fri","Sat"];
-    let tm=new Date()
     const ban=[
         Month[tm.getMonth()],
         tm.getDate()+"",
         Week[tm.getDay()]
     ]
+    chess.innerHTML="";
     for(let it of board)
     {
         let tmp=document.createElement("div");
@@ -33,6 +33,7 @@ function LoadCell()
         else tmp.classList.add("empty"),tmp.innerHTML=it;
         chess.appendChild(tmp);
     }
+    CheckComplete();
     return;
 }
 
@@ -98,6 +99,16 @@ function LoadJigsaw()
     return;
 }
 
+function DateChange()
+{
+    document.getElementById('date').value=new Date().toJSON().split("T")[0];
+    document.getElementById('date').addEventListener('change',function() {
+        return LoadCell(new Date(this.valueAsNumber));
+    });
+    return;
+}
+
+DateChange();
 LoadCell();
 LoadJigsaw();
 LoadJigsawEvents();
