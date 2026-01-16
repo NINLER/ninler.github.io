@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.parent {
+    position: relative;
+}
+
+.box {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: gray;
+    user-select: none;
+}
+
+.parent > canvas {
+    position: absolute;
+}

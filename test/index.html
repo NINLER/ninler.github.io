@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div class="parent">
+            <div class="box" id="box1" style="top: 0; left: 0; transition: all ease 0s;"></div>
+            <div class="box" id="box2" style="top: 0; left: 100px; background-color: blue;"></div>
+            <div class="box" id="box3" style="top: 100px; left: 0; background-color: blue;"></div>
+            <div class="box" id="box4" style="top: 100px; left: 100px; transition: all ease 0s;"></div>
+            <canvas id="canvas1" style="top: 200px; left: 200px; transition: all ease 0.1s;"></canvas>
+            <canvas id="canvas2" style="top: 200px; left: 200px;"></canvas>
+        </div>
+        <script src="index.js"></script>
+        <script>
+            const drag = new DragComponent();
+            drag.addElem(document.getElementById('box1'), false, true);
+            drag.addElem(document.getElementById('box2'), true, true);
+            drag.addElem(document.getElementById('box3'), true, false);
+            drag.addElem(document.getElementById('box4'), false, true);
+            let temp = document.getElementById('box3');
+            temp.addEventListener('mousedown', (ev) => ev.target.dispatchEvent(DragComponent.mouseDownEvent));
+            temp.addEventListener('mouseup', (ev) => ev.target.dispatchEvent(DragComponent.mouseUpEvent));
+
+            const img = new ImageComponent(
+                document.getElementById('canvas1'),
+                document.getElementById('canvas2'),
+                "./coffee2.png"
+            )
+        </script>
+    </body>
+</html>
